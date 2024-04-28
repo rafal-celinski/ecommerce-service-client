@@ -22,6 +22,13 @@ pipeline {
             }
 
         }
+	stage('Deploy') {
+            steps {
+                sh 'mvn -f api/pom.xml deploy'
+            }
+
+        }
+
     }
     post {
         always {
