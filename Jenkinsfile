@@ -24,7 +24,7 @@ pipeline {
         }
 	stage('Deploy') {
             steps {
-		configFileProvider([configFile(fileId: 'maven-settings', variable: 'MAVEN_SETTINGS')]) {
+		configFileProvider([configFile(fileId: 'maven_settings', variable: 'MAVEN_SETTINGS')]) {
         		sh 'mvn -s $MAVEN_SETTINGS -f api/pom.xml deploy'
     		}                
             }
