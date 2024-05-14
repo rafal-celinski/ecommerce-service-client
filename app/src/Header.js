@@ -1,11 +1,13 @@
-// Header.js
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import './style.css';
 
 function Header() {
     return (
-        <header>
-            <h1>Portal aukcyjny</h1>
-        </header>
+        <div className="Header">
+            Portal aukcyjny
+        </div>
     );
 }
 

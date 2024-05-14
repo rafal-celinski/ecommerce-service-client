@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-function FilterForm() {
+import './style.css';
+
+function FilterForm({setFilterData}) {
     const [formData, setFormData] = useState({
         search: '',
-        category: 0,
-        subcategory: 0,
-        minPrice: 0,
-        maxPrice: 0,
+        category: '0',
+        subcategory: '0',
+        minPrice: '0',
+        maxPrice: '0',
         location: '',
     });
+
+    useEffect(() => {setFilterData(formData);}, []);
 
     function handleChange(e) {
         const { name, value } = e.target;
@@ -17,13 +21,11 @@ function FilterForm() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        try {
-            // Wyślij dane do API
-            console.log('Dane do wysłania:', formData);
-        } catch (error) {
-            console.error('Błąd podczas wysyłania danych:', error);
-        }
+        setFilterData(formData);
+        console.log(formData);
     }
+
+
 
     const [categories, setCategories] = useState([]);
     function updateCategories() {
@@ -56,7 +58,7 @@ function FilterForm() {
 
 
     return (
-        <div>
+        <div className='FilterForm'>
             <form onSubmit={handleSubmit}>
                 <input
                     name='search'
