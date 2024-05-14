@@ -8,11 +8,11 @@ function Home() {
     const [filterData, setFilterData] = useState();
 
     return (
-        <body>
+        <div>
             <Header />
             <FilterForm setFilterData={setFilterData}/>
             <AuctionList filterData={filterData}/>
-        </body>
+        </div>
     );
 };
 

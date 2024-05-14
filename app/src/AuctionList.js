@@ -6,21 +6,25 @@ function AuctionList({filterData}) {
     const [auctions, setAuctions] = useState([]);
 
     function fetchAuctions() {
-        fetch('http://localhost:8080/auctions', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(filterData),
-        })
-            .then(response => response.json())
-            .then(auctions => {
-                setAuctions(auctions);
-            });
+        if (filterData) {
+            console.log(filterData);
+            fetch('http://localhost:8080/auctions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(filterData),
+            })
+                .then(response => response.json())
+                .then(auctions => {
+                    setAuctions(auctions);
+                });
+        }
     }
 
 
     useEffect(fetchAuctions, [filterData]);
+    useEffect(fetchAuctions, []);
 
     function formatDate(stringDate) {
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
