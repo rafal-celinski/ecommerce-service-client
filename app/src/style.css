@@ -12,22 +12,44 @@ body { font-family: sans-serif; font-size: 14px; color: #000; margin: 0; padding
     text-align: left;
 }
 
-.FilterForm input {
-    margin-right: 10px;
-    margin-left: 3px;
+.FilterForm form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.FilterForm select {
+.FilterForm input, .FilterForm select, .FilterForm button {
     margin-right: 10px;
     margin-left: 3px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.FilterForm select:hover {
+    background-color: #d0d0d7;
 }
 
 .FilterForm input[name="search"] {
-    width: 300px;
+    flex-grow: 1;
     margin-left: 10px;
 }
 
+.FilterForm button {
+    padding-inline: 20px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+.FilterForm button:hover {
+    background-color: #0056b3;
+}
+
 .Header {
+    margin-top:-60px;
     background-color: #d3d3d3;
     padding: 10px;
     text-align: left;
@@ -36,51 +58,24 @@ body { font-family: sans-serif; font-size: 14px; color: #000; margin: 0; padding
     font-weight: bold;
     position: fixed;
     width: 100%;
-    margin-top: -60px;
-
 }
 
-.AuctionSummary {
-    margin:10px;
-    background-color: #f9f9f9;
-    padding: 10px;
-    border: 1px solid #d3d3d3;
-    display: flex;
-    justify-content: space-between;
-
-}
-
-.AuctionSummary .SummaryImage {
-    width: 10%;
-
-
-}
-
-.AuctionSummary .SummaryImage img {;
-    width: 100%;
-    height: auto;
-}
-
-.AuctionSummary .SummaryInfo {
-    width: 90%;
+.Header button {
     margin-left: 10px;
+    float: right;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
 }
 
-.AuctionSummary .SummaryTitle {
-    font-size: 16px;
-    font-weight: bold;
+.Header button:hover {
+    background-color: #0056b3;
 }
 
-.AuctionSummary .SummaryPrice {
-    margin-left: 10px;
-    margin-top: 10px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.AuctionSummary .SummaryLocationDate {
-
-    padding-top: 75px;
-
-
+.Header .HeaderTitle {
+    color: #000000;
+    text-decoration: none;
 }

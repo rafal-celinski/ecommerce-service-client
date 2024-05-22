@@ -1,0 +1,49 @@
+.AuctionList {
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.AuctionList .Auctions {
+    display: flex;
+    flex-direction: column;
+}
+
+.AuctionList .Auctions .ListElement {
+    padding: 5px;
+}
+
+.AuctionList .Pagination {
+    padding: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.AuctionList .Pagination .prevPage {
+    position: absolute;
+    right: 50%;
+    transform: translateX(-50px);
+}
+
+.AuctionList .Pagination .Page {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.AuctionList .Pagination .nextPage {
+    position: absolute;
+    left: 50%;
+    transform: translateX(50px);
+}
+
+.AuctionList .Pagination button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
