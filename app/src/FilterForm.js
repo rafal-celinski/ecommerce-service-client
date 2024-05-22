@@ -9,6 +9,7 @@ function FilterForm({setFilterData}) {
         subcategory: '',
         minPrice: '',
         maxPrice: '',
+
         location: '',
     });
 
@@ -38,12 +39,14 @@ function FilterForm({setFilterData}) {
             });
 
         setFormData({ ...formData, category: '' });
+
     }
     useEffect(updateCategories, []);
 
 
     const [subcategories, setSubcategories] = useState([]);
     function updateSubcategories() {
+
         if (formData.category !== '') {
             fetch('http://localhost:8080/subcategories/category?categoryId=' + formData.category)
                 .then((response) => response.json())
@@ -63,6 +66,19 @@ function FilterForm({setFilterData}) {
 
     }
     useEffect(updateSubcategories, [formData.category]);
+
+
+         fetch('http://localhost:8080/subcategories/' + formData.category)
+              .then((response) => response.json())
+              .then(subcategories => {
+                  setSubcategories(subcategories);
+              })
+              .catch((error) => {
+                  console.error('Błąd podczas pobierania podkategorii:', error);
+              });
+    }
+    useEffect(updateSubcategories, [formData.category]);
+
 
     return (
         <div className='FilterForm'>

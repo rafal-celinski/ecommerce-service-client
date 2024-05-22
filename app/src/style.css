@@ -12,6 +12,7 @@ body { font-family: sans-serif; font-size: 14px; color: #000; margin: 0; padding
     text-align: left;
 }
 
+
 .FilterForm form {
     display: flex;
     align-items: center;
@@ -50,6 +51,7 @@ body { font-family: sans-serif; font-size: 14px; color: #000; margin: 0; padding
 
 .Header {
     margin-top:-60px;
+
     background-color: #d3d3d3;
     padding: 10px;
     text-align: left;
@@ -58,6 +60,7 @@ body { font-family: sans-serif; font-size: 14px; color: #000; margin: 0; padding
     font-weight: bold;
     position: fixed;
     width: 100%;
+
 }
 
 .Header button {
@@ -79,3 +82,4 @@ body { font-family: sans-serif; font-size: 14px; color: #000; margin: 0; padding
     color: #000000;
     text-decoration: none;
 }
+

@@ -84,6 +84,7 @@ function AuctionList({filterData}) {
                     <div className="Page">Strona: {pageInfo.pageNumber + 1} z {pageInfo.totalPages}</div>
                     {!pageInfo.last && <button className="nextPage" onClick={nextPage}>Następna strona</button>}
                 </div>
+
             </div>
         );
     }
