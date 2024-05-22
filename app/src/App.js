@@ -12,6 +12,7 @@ function App() {
                     <Route path="/" element=<Home /> />
                     <Route path="/auction/:auctionId" element=<Auction /> />
                     <Route path="/add" element=<AddAuction /> />
+
                 </Routes>
             </BrowserRouter>
     );

@@ -1,0 +1,78 @@
+.Auction {
+    margin: 60px auto;
+    display : flex;
+    flex-direction : column;
+    width: 70%;
+    padding : 10px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.Auction .AuctionTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.Auction .AuctionImage {
+    width: 500px;
+    height: 500px;
+    margin-right: 10px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    overflow: hidden;
+    align-items: center;
+    background-color: #ffffff;
+
+}
+
+.Auction .AuctionImage img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.Auction .ImageButtons {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+
+
+}
+
+.Auction .ImageButtons button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+.Auction .ImageButtons button:hover {
+    background-color: #0056b3;
+}
+
+
+
+.Auction .AuctionPrice {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.Auction .AuctionDescription {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.Auction .AuctionDescription .DescriptionHeader {
+    font-size: 16px;
+    font-weight: bold;
+}

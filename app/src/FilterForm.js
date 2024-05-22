@@ -5,10 +5,11 @@ import './style.css';
 function FilterForm({setFilterData}) {
     const [formData, setFormData] = useState({
         search: '',
-        category: '0',
-        subcategory: '0',
-        minPrice: '0',
-        maxPrice: '0',
+
+        category: '',
+        subcategory: '',
+        minPrice: '',
+        maxPrice: '',
         location: '',
     });
 
@@ -25,24 +26,48 @@ function FilterForm({setFilterData}) {
         console.log(formData);
     }
 
-
-
     const [categories, setCategories] = useState([]);
     function updateCategories() {
         fetch('http://localhost:8080/categories')
             .then((response) => response.json())
             .then(categories => {
-                setCategories(categories);
+
+                setCategories([{id: '', name: "Wszystkie"}, ...categories]);
             })
             .catch((error) => {
                 console.error('Błąd podczas pobierania kategorii:', error);
+                setCategories([{id: '', name: "Wszystkie"}]);
             });
+
+        setFormData({ ...formData, category: '' });
+
     }
     useEffect(updateCategories, []);
 
 
     const [subcategories, setSubcategories] = useState([]);
     function updateSubcategories() {
+
+        if (formData.category !== '') {
+            fetch('http://localhost:8080/subcategories/category?categoryId=' + formData.category)
+                .then((response) => response.json())
+                .then(subcategories => {
+                    setSubcategories([{id: '', name: "Wszystkie"}, ...subcategories]);
+                })
+                .catch((error) => {
+                    console.error('Błąd podczas pobierania podkategorii:', error);
+                    setSubcategories([{id: '', name: "Wszystkie"}]);
+                });
+        }
+        else {
+            setSubcategories([{id: '', name: "Wszystkie"}]);
+        }
+
+        setFormData({ ...formData, subcategory: '' });
+
+    }
+    useEffect(updateSubcategories, [formData.category]);
+
          fetch('http://localhost:8080/subcategories/' + formData.category)
               .then((response) => response.json())
               .then(subcategories => {
@@ -53,7 +78,6 @@ function FilterForm({setFilterData}) {
               });
     }
     useEffect(updateSubcategories, [formData.category]);
-
 
 
 
