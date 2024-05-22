@@ -6,7 +6,10 @@ import './style.css';
 function Header() {
     return (
         <div className="Header">
-            Portal aukcyjny
+            <Link to="/" className="HeaderTitle">Portal aukcyjny</Link>
+            <Link to="/add">
+                <button>Dodaj aukcję</button>
+            </Link>
         </div>
     );
 }

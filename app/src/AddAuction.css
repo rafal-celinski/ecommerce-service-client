@@ -1,0 +1,53 @@
+.AddAuctionForm {
+    margin: 60px auto;
+
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 20px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.AddAuctionForm .FormTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+}
+
+.AddAuctionForm label {
+    margin-bottom: 10px;
+}
+
+.AddAuctionForm input, .AddAuctionForm select, .AddAuctionForm textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.AddAuctionForm select:hover {
+    background-color: #d0d0d7;
+}
+
+.AddAuctionForm textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.AddAuctionForm button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.AddAuctionForm button:hover {
+    background-color: #0056b3;
+}
