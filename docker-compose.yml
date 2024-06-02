@@ -2,33 +2,36 @@ version: '3.8'
 
 services:
   postgres:
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: ${DB_USER}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${DB_NAME}
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    extends:
+      file: docker-compose-postgres.yml
+      service: postgres
 
   api:
-    build: ./api  # Ścieżka do katalogu zawierającego Dockerfile dla aplikacji
-    ports:
-      - "8080:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${DB_NAME}
-      SPRING_DATASOURCE_USERNAME: ${DB_USER}
-      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+    extends:
+      file: docker-compose-api.yml
+      service: api
     depends_on:
       - postgres
+      - kafka
 
   app:
-    build: ./app
-    ports:
-      - "5000:5000"
+    extends:
+      file: docker-compose-app.yml
+      service: app
     depends_on:
       - api
+
+  zookeeper:
+    extends:
+      file: docker-compose-kafka.yml
+      service: zookeeper
+
+  kafka:
+    extends:
+      file: docker-compose-kafka.yml
+      service: kafka
+    depends_on:
+      - zookeeper
 
 volumes:
   postgres_data:
