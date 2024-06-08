@@ -1,0 +1,120 @@
+.Cart {
+    margin: 60px auto;
+}
+
+.Cart .Products {
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.Cart .Products .Product {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    margin-top: 10px;
+}
+
+.Cart .Products .Product .ProductImage {
+    width: 10%;
+    height: 100%;
+    margin-right: 10px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    overflow: hidden;
+    align-items: center;
+    background-color: #ffffff;
+}
+
+.Cart .Products .Product .ProductImage img {;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.Cart .Products .Product .ProductInfo {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    align-items: center;
+}
+
+.Cart .Products .Product .ProductInfo .ProductTitle {
+    font-size: 16px;
+    font-weight: bold;
+    width: 60%;
+}
+
+.Cart .Products .Product .ProductInfo .ProductQuantity {
+    font-size: 16px;
+    font-weight: bold;
+    width: 10%;
+
+}
+
+.Cart .Products .Product .ProductInfo .ProductQuantity input{
+    width: 100%;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.Cart .Products .Product .ProductInfo .ProductTotalPrice {
+    width: 15%;
+    margin-left: 10px;
+    padding-inline: 5px;
+    font-weight: bold;
+}
+
+.Cart .Products .Product .ProductInfo .ProductRemove {
+    margin: auto;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+.Cart .Products .Product .ProductInfo .ProductRemove:hover{
+    background-color: #0056b3;
+}
+
+
+.Cart .CartSummary{
+    margin: 10px auto;
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    background-color: #f9f9f9;
+    padding: 10px;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.Cart .CartSummary .CartTotalPrice{
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.Cart .CartSummary .CartCheckout {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+.Cart .CartSummary .CartCheckout:hover {
+    background-color: #0056b3;
+}
