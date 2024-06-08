@@ -7,9 +7,9 @@ function Header() {
     return (
         <div className="Header">
             <Link to="/" className="HeaderTitle">Portal aukcyjny</Link>
-            {/*<Link to="...">*/}
-            {/*    <button>...</button>*/}
-            {/*</Link>*/}
+            <Link to="/cart">
+                <button>Pokaż koszyk</button>
+            </Link>
         </div>
     );
 }

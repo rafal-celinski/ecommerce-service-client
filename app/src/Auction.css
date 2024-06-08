@@ -76,3 +76,25 @@
     font-size: 16px;
     font-weight: bold;
 }
+
+.Auction .AuctionAddToCart {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+
+}
+
+.Auction .AuctionAddToCart button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+}
+
+.Auction .AuctionAddToCart button:hover {
+    background-color: #0056b3;
+}

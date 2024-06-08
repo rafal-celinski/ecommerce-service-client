@@ -30,6 +30,24 @@ function Auction() {
         setCurrentImage((currentImage + auction.imageUrls.length - 1) % auction.imageUrls.length);
     }
 
+    function addToCart() {
+        fetch(process.env.REACT_APP_API_URL + "/cart/add", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({id: auction.id})
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Could not add item to cart');
+                }
+            })
+            .catch((error) => {
+                console.error('Błąd podczas dodawania do koszyka:', error);
+            });
+    }
+
 
     if (!auction) {
         return <div>Loading...</div>;
@@ -56,8 +74,12 @@ function Auction() {
                 <div className="AuctionPrice">{auction.price} zł</div>
                 <div className="AuctionDescription">
                     <div className="DescriptionHeader">Opis</div>
-                    <p>{auction.description}</p></div>
-            </div>
+                    <p>{auction.description}</p>
+                </div>
+                <div className="AuctionAddToCart">
+                    <button onClick={addToCart}>Dodaj do koszyka</button>
+                </div>
+             </div>
         </div>
     );
 }
