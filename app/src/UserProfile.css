@@ -1,0 +1,6 @@
+.UserProfile {
+    margin: 60px auto;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
