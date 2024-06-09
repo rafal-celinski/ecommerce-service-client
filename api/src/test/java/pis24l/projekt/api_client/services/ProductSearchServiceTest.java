@@ -45,8 +45,7 @@ public class ProductSearchServiceTest {
 
     @BeforeEach
     public void setup() {
-        MockitoAnnotations.initMocks(this);
-        productSearchService.setEntityManager(entityManager); // Manually inject the mock EntityManager
+        MockitoAnnotations.initMocks(this);// Manually inject the mock EntityManager
     }
 
     private void setupMockQuery(List<Product> productList, long total) {
@@ -257,12 +256,12 @@ public class ProductSearchServiceTest {
     @Test
     public void testGetProductById_withImages() {
         // Mock data
-        Long productId = 0L;
+        String productId = "XDXD";
         byte[] imageData = new byte[] {0,2,3,4};
         Product product = new Product(productId,"XD",BigDecimal.valueOf(0));
 
 
-        // Mock behavior
+        // Mock behaviorv
         when(productRepository.findById(productId)).thenReturn(Optional.of(product));
         when(imageRepository.findByProductId(productId)).thenReturn(Collections.singletonList(new Image(0L)));
 
@@ -277,15 +276,15 @@ public class ProductSearchServiceTest {
     @Test
     void testGetProductById_notFound() {
         // Mock data
-        when(productRepository.findById(1L)).thenReturn(Optional.empty());
+        when(productRepository.findById("XDXD")).thenReturn(Optional.empty());
 
         // Test & Verify
         RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            productSearchService.getProductById(1L);
+            productSearchService.getProductById("XDXD");
         });
         assertEquals("Product not found with id 1", exception.getMessage());
 
-        verify(productRepository, times(1)).findById(1L);
+        verify(productRepository, times(1)).findById("XDXD");
     }
 
 

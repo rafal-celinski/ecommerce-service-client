@@ -77,11 +77,11 @@ public class ProductSearchControllerTest {
     @Test
     public void testGetProductById() throws Exception {
         // Mocking a product object
-        Product mockProduct = new Product(1L, "Mock Product", BigDecimal.valueOf(10.99));
+        Product mockProduct = new Product("XDXD", "Mock Product", BigDecimal.valueOf(10.99));
 
 
         // Mocking the behavior of the ProductService to return the mockProduct when getProductById is called with ID 1
-        when(productSearchService.getProductById(1L)).thenReturn(mockProduct);
+        when(productSearchService.getProductById("XDXD")).thenReturn(mockProduct);
 
         // Perform GET request to /products/{id} endpoint
         mockMvc.perform(MockMvcRequestBuilders.get("/products/{id}", 1L))

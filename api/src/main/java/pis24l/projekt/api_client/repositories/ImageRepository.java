@@ -1,11 +1,12 @@
 package pis24l.projekt.api_client.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 import pis24l.projekt.api_client.model.Image;
 
 import java.util.List;
-
-public interface ImageRepository extends JpaRepository<Image, Long> {
-    List<Image> findByProductId(Long productId);
+@Repository
+public interface ImageRepository extends MongoRepository<Image, Long> {
+    List<Image> findByProductId(String productId);
 
 }

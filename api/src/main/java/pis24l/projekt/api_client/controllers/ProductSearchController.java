@@ -23,7 +23,7 @@ public class ProductSearchController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+    public ResponseEntity<Product> getProductById(@PathVariable String id) {
         Product product = productSearchService.getProductById(id);
         return ResponseEntity.ok(product);
     }

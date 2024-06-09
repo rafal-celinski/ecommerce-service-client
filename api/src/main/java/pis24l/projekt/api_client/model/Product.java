@@ -1,7 +1,9 @@
 package pis24l.projekt.api_client.model;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -10,13 +12,11 @@ import javax.validation.constraints.Size;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "product")
+@Document(collection = "product")
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @NotNull(message = "Title cannot be null")
     @Size(min = 1, max = 255, message = "Title must be between 1 and 255 characters")
@@ -30,25 +30,20 @@ public class Product {
     @Size(min = 1, max = 255, message = "Location must be between 1 and 255 characters")
     private String location;
 
-    @Column(name = "date")
+    @CreatedDate
     private LocalDateTime date;
 
     @NotNull(message = "Category cannot be null")
     private Long category;
 
-
     @NotNull(message = "Subcategory cannot be null")
     private Long subcategory;
 
-    @Column(name="description")
     private String description;
 
-    @PrePersist
-    protected void onCreate() {
-        date = LocalDateTime.now();
+    public Product() {
+        this.date = LocalDateTime.now();
     }
-
-    protected Product() {}
 
     public Product(String title, BigDecimal price, String location, Long subcategory, Long category, String description) {
         this.title = title;
@@ -57,18 +52,17 @@ public class Product {
         this.category = category;
         this.subcategory = subcategory;
         this.description = description;
+        this.date = LocalDateTime.now();
     }
 
-    public Product(Long id, String title, BigDecimal price) {
+    private List<String> imageUrls;
+
+    public Product(String id, String title, BigDecimal price) {
         this.id = id;
         this.title = title;
         this.price = price;
     }
-  
-    @Transient
-    private List<String> imageUrls; // Add this field
 
-    // Getters and setters for the new field
     public List<String> getImageUrls() {
         return imageUrls;
     }
@@ -76,7 +70,7 @@ public class Product {
     public void setImageUrls(List<String> imageUrls) {
         this.imageUrls = imageUrls;
     }
-        public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -98,17 +92,16 @@ public class Product {
         return date;
     }
 
-
     public Long getCategory() {
         return category;
     }
 
-  
+
     public Long getSubcategory() {
         return subcategory;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -123,7 +116,7 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
-  
+
     public void setLocation(String location) {
         this.location = location;
     }

@@ -20,8 +20,6 @@ public class CategorySearchController {
     public CategorySearchController(CategorySearchService categorySearchService) {
         this.categorySearchService = categorySearchService;
     }
-
-
     @GetMapping
     public List<Category> getAllCategories() {
         return categorySearchService.getAllCategories();

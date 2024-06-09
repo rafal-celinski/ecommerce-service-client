@@ -11,17 +11,18 @@ import pis24l.projekt.api_client.model.Product;
 
 import javax.validation.Valid;
 
-@CrossOrigin(origins = "http://localhost:5000")
 @RestController
-@RequestMapping("/products/add")
+@RequestMapping("/products")
 public class ProductAddController {
 
     private final ProductRepository productRepository;
+
     @Autowired
     public ProductAddController(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-    @PostMapping
+
+    @PostMapping("/add")
     public ResponseEntity<?> addProduct(@RequestBody @Valid Product product, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(bindingResult.getAllErrors());
