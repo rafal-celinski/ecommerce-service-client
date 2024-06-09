@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
-import pis24l.projekt.api_client.model.Product;
+import pis24l.projekt.api_client.models.Product;
 import pis24l.projekt.api_client.repositories.ProductRepository;
 
 import java.math.BigDecimal;
@@ -44,7 +44,7 @@ public class ProductAddControllerTest {
 
     @Test
     public void whenPostRequestToProductsAndValidProduct_thenCorrectResponse() throws Exception {
-        Product product = new Product("Laptop", BigDecimal.valueOf(999.99), "Warsaw", 1L, 1L, "High performance laptop with latest specifications");
+        Product product = new Product("Laptop", BigDecimal.valueOf(999.99), "Warsaw", "XD", "XD", "High performance laptop with latest specifications");
         given(productRepository.save(any(Product.class))).willReturn(product);
 
         mockMvc.perform(post("/products/add")

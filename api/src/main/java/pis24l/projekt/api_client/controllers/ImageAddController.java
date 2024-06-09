@@ -6,10 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import pis24l.projekt.api_client.service.ImageAddService;
+import pis24l.projekt.api_client.services.ImageAddService;
 import pis24l.projekt.api_client.repositories.ImageRepository;
 
-import pis24l.projekt.api_client.model.Image;
+import pis24l.projekt.api_client.models.Image;
 
 import java.io.IOException;
 

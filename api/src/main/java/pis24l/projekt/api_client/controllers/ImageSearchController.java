@@ -7,7 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pis24l.projekt.api_client.service.ImageSearchService;
+import pis24l.projekt.api_client.services.ImageSearchService;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

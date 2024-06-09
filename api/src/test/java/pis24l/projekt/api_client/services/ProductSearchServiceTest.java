@@ -5,11 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import pis24l.projekt.api_client.model.Image;
-import pis24l.projekt.api_client.model.Product;
+import pis24l.projekt.api_client.models.Image;
+import pis24l.projekt.api_client.models.Product;
 import pis24l.projekt.api_client.repositories.ImageRepository;
 import pis24l.projekt.api_client.repositories.ProductRepository;
-import pis24l.projekt.api_client.service.ProductSearchService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -89,7 +88,7 @@ public class ProductSearchServiceTest {
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = new ArrayList<>();
-        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", 0L, 0L, "xd");
+        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "XD", "XD", "xd");
         productList.add(product);
         long total = 1;
 
@@ -115,7 +114,7 @@ public class ProductSearchServiceTest {
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = new ArrayList<>();
-        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", 0L, 0L, "xd");        productList.add(product);
+        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "XD", "XD", "xd");        productList.add(product);
         long total = 1;
 
         setupMockQuery(productList, total);
@@ -140,7 +139,7 @@ public class ProductSearchServiceTest {
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = new ArrayList<>();
-        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", 0L, 0L, "xd");        productList.add(product);
+        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "XD", "XD", "xd");        productList.add(product);
         long total = 1;
 
         setupMockQuery(productList, total);
@@ -165,7 +164,7 @@ public class ProductSearchServiceTest {
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = new ArrayList<>();
-        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", 0L, 0L, "xd");        productList.add(product);
+        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "XD", "XD", "xd");        productList.add(product);
         long total = 1;
 
         setupMockQuery(productList, total);
@@ -190,7 +189,7 @@ public class ProductSearchServiceTest {
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = new ArrayList<>();
-        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", 0L, 0L, "xd");        productList.add(product);
+        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "XD", "XD", "xd");        productList.add(product);
         long total = 1;
 
         setupMockQuery(productList, total);
@@ -215,7 +214,7 @@ public class ProductSearchServiceTest {
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = new ArrayList<>();
-        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", 0L, 0L, "xd");        productList.add(product);
+        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "XD", "XD", "xd");        productList.add(product);
         long total = 1;
 
         setupMockQuery(productList, total);
@@ -240,7 +239,7 @@ public class ProductSearchServiceTest {
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = new ArrayList<>();
-        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", 0L, 0L, "xd");        productList.add(product);
+        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "XD", "XD", "xd");        productList.add(product);
         long total = 1;
 
         setupMockQuery(productList, total);
@@ -263,7 +262,7 @@ public class ProductSearchServiceTest {
 
         // Mock behaviorv
         when(productRepository.findById(productId)).thenReturn(Optional.of(product));
-        when(imageRepository.findByProductId(productId)).thenReturn(Collections.singletonList(new Image(0L)));
+        when(imageRepository.findByProductId(productId)).thenReturn(Collections.singletonList(new Image(3L)));
 
         // Call the method
         Product result = productSearchService.getProductById(productId);

@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import pis24l.projekt.api_client.repositories.ProductRepository;
-import pis24l.projekt.api_client.model.Product;
+import pis24l.projekt.api_client.models.Product;
 
 import javax.validation.Valid;
 

@@ -3,7 +3,6 @@ package pis24l.projekt.api_client.services;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pis24l.projekt.api_client.service.ImageSearchService;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

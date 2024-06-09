@@ -1,4 +1,4 @@
-package pis24l.projekt.api_client.service;
+package pis24l.projekt.api_client.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import pis24l.projekt.api_client.model.Product;
+import pis24l.projekt.api_client.models.Product;
 import pis24l.projekt.api_client.repositories.ImageRepository;
 import pis24l.projekt.api_client.repositories.ProductRepository;
 

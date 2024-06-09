@@ -17,9 +17,9 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import pis24l.projekt.api_client.repositories.ImageRepository;
-import pis24l.projekt.api_client.service.ImageAddService;
+import pis24l.projekt.api_client.services.ImageAddService;
 
-import pis24l.projekt.api_client.model.Image;
+import pis24l.projekt.api_client.models.Image;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ImageAddController.class)

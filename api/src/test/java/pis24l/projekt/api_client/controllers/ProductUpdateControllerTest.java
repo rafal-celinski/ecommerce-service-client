@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import pis24l.projekt.api_client.repositories.ProductRepository;
-import pis24l.projekt.api_client.model.Product;
+import pis24l.projekt.api_client.models.Product;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -33,7 +33,7 @@ public class ProductUpdateControllerTest {
 
     @Test
     public void whenUpdateProductWithExistingId_thenProductIsUpdated() throws Exception {
-        Product product = new Product("Laptop", BigDecimal.valueOf(1200.00), "Online", 1L, 1L, "High performance laptop");
+        Product product = new Product("Laptop", BigDecimal.valueOf(1200.00), "Online", "XD", "XD", "High performance laptop");
         product.setId("XDXD");
         given(productRepository.findById("XDXD")).willReturn(Optional.of(product));
         given(productRepository.save(any(Product.class))).willReturn(product);
@@ -67,7 +67,7 @@ public class ProductUpdateControllerTest {
 
     @Test
     public void whenUpdateProductWithExistingIdButIncorrectData_thenProductIsNotUpdated() throws Exception {
-        Product product = new Product("Laptop", BigDecimal.valueOf(1200.00), "Online", 1L, 1L, "High performance laptop");
+        Product product = new Product("Laptop", BigDecimal.valueOf(1200.00), "Online", "XD", "XD", "High performance laptop");
         product.setId("XDXD");
         given(productRepository.findById("XDXD")).willReturn(Optional.of(product));
         given(productRepository.save(any(Product.class))).willReturn(product);

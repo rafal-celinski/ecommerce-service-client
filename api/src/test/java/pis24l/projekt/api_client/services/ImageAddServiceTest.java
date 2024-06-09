@@ -7,8 +7,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import org.springframework.mock.web.MockMultipartFile;
-import pis24l.projekt.api_client.service.ImageAddService;
-import pis24l.projekt.api_client.service.FileStorage;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
