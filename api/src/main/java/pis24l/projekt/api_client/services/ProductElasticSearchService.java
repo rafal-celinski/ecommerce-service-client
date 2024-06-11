@@ -1,6 +1,7 @@
 package pis24l.projekt.api_client.services;
 
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.index.query.RangeQueryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,10 @@ public class ProductElasticSearchService {
         BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
 
         if (search != null && !search.isEmpty()) {
-            boolQueryBuilder.must(QueryBuilders.multiMatchQuery(search, "title", "description"));
+            boolQueryBuilder.must(QueryBuilders.multiMatchQuery(search)
+                    .field("title")
+                    .field("description")
+                    .fuzziness("AUTO"));
         }
 
         if (category != null && !category.isEmpty()) {
