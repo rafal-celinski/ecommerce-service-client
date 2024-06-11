@@ -7,8 +7,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pis24l.projekt.api_client.models.Image;
 import pis24l.projekt.api_client.models.Product;
-import pis24l.projekt.api_client.repositories.ImageRepository;
-import pis24l.projekt.api_client.repositories.ProductRepository;
+import pis24l.projekt.api_client.repositories.mongo.ImageRepository;
+import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -28,7 +28,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class ProductSearchServiceTest {
+public class ProductElasticSearchServiceTest {
 
     @Mock
     private ProductRepository productRepository;

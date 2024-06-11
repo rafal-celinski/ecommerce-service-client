@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-import pis24l.projekt.api_client.repositories.ImageRepository;
+import pis24l.projekt.api_client.repositories.mongo.ImageRepository;
 import pis24l.projekt.api_client.services.ImageAddService;
 
 import pis24l.projekt.api_client.models.Image;

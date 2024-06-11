@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pis24l.projekt.api_client.repositories.ProductRepository;
+import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
 
 @CrossOrigin(origins = "http://localhost:5000")
 @RestController

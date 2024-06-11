@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import pis24l.projekt.api_client.repositories.ProductRepository;
+import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
 import pis24l.projekt.api_client.models.Product;
 
 import java.math.BigDecimal;

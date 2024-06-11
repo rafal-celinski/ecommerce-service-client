@@ -1,4 +1,4 @@
-package pis24l.projekt.api_client.repositories;
+package pis24l.projekt.api_client.repositories.mongo;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

@@ -6,7 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pis24l.projekt.api_client.models.Category;
-import pis24l.projekt.api_client.repositories.CategoryRepository;
+import pis24l.projekt.api_client.repositories.mongo.CategoryRepository;
 
 import java.util.ArrayList;
 import java.util.List;

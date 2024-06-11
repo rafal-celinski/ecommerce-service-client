@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import pis24l.projekt.api_client.models.Product;
-import pis24l.projekt.api_client.repositories.ProductRepository;
+import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
 
 import java.math.BigDecimal;
 
