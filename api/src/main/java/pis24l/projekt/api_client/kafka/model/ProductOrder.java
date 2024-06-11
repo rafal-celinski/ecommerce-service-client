@@ -26,4 +26,12 @@ public class ProductOrder {
     }
 
     // getters and setters
+
+    @Override
+    public String toString() {
+        return "ProductOrder{" +
+                "productId='" + productId + '\'' +
+                ", quantity=" + quantity +
+                '}';
+    }
 }
