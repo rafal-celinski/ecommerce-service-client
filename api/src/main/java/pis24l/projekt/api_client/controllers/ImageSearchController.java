@@ -26,7 +26,7 @@ public class ImageSearchController {
     }
 
     @GetMapping("/{imageId}")
-    public ResponseEntity<?> getImageById(@PathVariable Long imageId) {
+    public ResponseEntity<?> getImageById(@PathVariable String imageId) {
         try {
             Optional<Path> filePathOptional = imageSearchService.findImageFile(imageId);
             if (filePathOptional.isEmpty()) {

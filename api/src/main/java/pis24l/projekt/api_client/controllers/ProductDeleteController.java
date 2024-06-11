@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pis24l.projekt.api_client.repositories.ProductRepository;
+import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
 
 @CrossOrigin(origins = "http://localhost:5000")
 @RestController
@@ -19,12 +19,11 @@ public class ProductDeleteController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
+    public ResponseEntity<?> deleteProduct(@PathVariable String id) {
         if (!productRepository.existsById(id)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
         }
 
-        productRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

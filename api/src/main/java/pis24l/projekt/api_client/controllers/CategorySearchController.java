@@ -1,14 +1,14 @@
 package pis24l.projekt.api_client.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import pis24l.projekt.api_client.model.Category;
+import pis24l.projekt.api_client.model.Subcategory;
 import pis24l.projekt.api_client.service.CategorySearchService;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:5000")
 @RestController
@@ -20,11 +20,19 @@ public class CategorySearchController {
     public CategorySearchController(CategorySearchService categorySearchService) {
         this.categorySearchService = categorySearchService;
     }
-
-
     @GetMapping
     public List<Category> getAllCategories() {
-        return categorySearchService.getAllCategories();
+        return categorySearchService.findAll();
+    }
+
+    @GetMapping("/{id}/subcategories")
+    public ResponseEntity<List<Subcategory>> getSubcategoriesByCategoryId(@PathVariable String id) {
+        Optional<Category> category = categorySearchService.findById(id);
+        if (category.isPresent()) {
+            return ResponseEntity.ok(category.get().getSubcategories());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

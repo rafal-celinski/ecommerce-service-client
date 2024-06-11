@@ -5,11 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import pis24l.projekt.api_client.service.ImageAddService;
-import pis24l.projekt.api_client.repositories.ImageRepository;
-
 import pis24l.projekt.api_client.model.Image;
+import pis24l.projekt.api_client.repositories.mongo.ImageRepository;
+import pis24l.projekt.api_client.service.ImageAddService;
 
 import java.io.IOException;
 
@@ -29,7 +27,7 @@ public class ImageAddController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addFile(@RequestParam("image") MultipartFile file, @RequestParam("productId") Long productId) {
+    public ResponseEntity<?> addFile(@RequestParam("image") MultipartFile file, @RequestParam("productId") String productId) {
         if (!imageAddService.isImageFile(file)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid file type.");
         }

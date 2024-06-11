@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pis24l.projekt.api_client.model.Product;
-import pis24l.projekt.api_client.repositories.ProductRepository;
+import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
 
 import javax.validation.Valid;
 import java.util.Optional;
@@ -24,7 +24,7 @@ public class ProductUpdateController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody @Valid Product product, BindingResult bindingResult) {
+    public ResponseEntity<?> updateProduct(@PathVariable String id, @RequestBody @Valid Product product, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(bindingResult.getAllErrors());
         }
@@ -41,6 +41,8 @@ public class ProductUpdateController {
         updatedProduct.setCategory(product.getCategory());
         updatedProduct.setSubcategory(product.getSubcategory());
         updatedProduct.setDescription(product.getDescription());
+        updatedProduct.setStatus(product.getStatus());
+
 
         productRepository.save(updatedProduct);
 

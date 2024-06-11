@@ -5,21 +5,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import org.springframework.mock.web.MockMultipartFile;
-import pis24l.projekt.api_client.service.ImageAddService;
 import pis24l.projekt.api_client.service.FileStorage;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.verify;
-
-import static org.mockito.Mockito.times;
+import pis24l.projekt.api_client.service.ImageAddService;
 
 import java.io.IOException;
 import java.nio.file.Path;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -34,7 +30,7 @@ class ImageAddServiceTest {
     @Test
     void uploadImage_whenCalled_verifiesMethodCalls() throws IOException {
         MockMultipartFile file = new MockMultipartFile("image", "filename.jpg", "image/jpeg", "some data".getBytes());
-        Long id = 1L;
+        String id = "abba";
         String saveFileName = id + ".jpg";
 
         imageAddService.uploadImage(file, id);

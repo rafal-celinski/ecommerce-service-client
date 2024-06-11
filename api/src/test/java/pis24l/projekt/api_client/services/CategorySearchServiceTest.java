@@ -6,11 +6,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import pis24l.projekt.api_client.model.Category;
-import pis24l.projekt.api_client.repositories.CategoryRepository;
+import pis24l.projekt.api_client.repositories.mongo.CategoryRepository;
 import pis24l.projekt.api_client.service.CategorySearchService;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -33,7 +34,7 @@ public class CategorySearchServiceTest {
         String search = "searchTerm";
 
         List<Category> categoryList = new ArrayList<>();
-        Category category = new Category(0L, "test");
+        Category category = new Category("agd", "test");
         categoryList.add(category);
 
         when(categoryRepository.findAll()).thenReturn(categoryList);

@@ -3,11 +3,14 @@ package pis24l.projekt.api_client.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pis24l.projekt.api_client.model.Category;
-import pis24l.projekt.api_client.repositories.CategoryRepository;
+import pis24l.projekt.api_client.repositories.mongo.CategoryRepository;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategorySearchService {
+
     private final CategoryRepository categoryRepository;
 
     @Autowired
@@ -15,8 +18,11 @@ public class CategorySearchService {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<Category> getAllCategories() {
+    public List<Category> findAll() {
         return categoryRepository.findAll();
     }
 
+    public Optional<Category> findById(String id) {
+        return categoryRepository.findById(id);
+    }
 }

@@ -30,8 +30,8 @@ public class CategorySearchControllerTest {
     public void testGetAllCategories() {
         // Given
         List<Category> categories = new ArrayList<>();
-        categories.add(new Category(0L,"Category 1"));
-        categories.add(new Category(0L, "Category 2"));
+        categories.add(new Category("baba","Category 1"));
+        categories.add(new Category("kaba", "Category 2"));
 
         when(categorySearchService.getAllCategories()).thenReturn(categories);
 
