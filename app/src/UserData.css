@@ -1,0 +1,25 @@
+.UserData {
+    background-color: #f9f9f9;
+    padding: 10px 10px 0;
+    border: 1px solid #d3d3d3;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+
+}
+.UserData .UserDataHeader {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.UserProfile .Name .NameHeader, .UserProfile .Email .EmailHeader, .UserProfile .Address .AddressHeader {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.UserProfile .Name .NameData, .UserProfile .Email .EmailData, .UserProfile .Address .AddressData {
+    display : flex;
+    flex-direction : column;
+    margin-bottom: 10px;
+}
