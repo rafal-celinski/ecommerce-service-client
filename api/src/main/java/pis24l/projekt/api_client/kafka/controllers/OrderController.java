@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import pis24l.projekt.api_client.kafka.model.ProductOrder;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/order")
 public class OrderController {
 
     private final KafkaTemplate<String, ProductOrder> kafkaTemplate;
