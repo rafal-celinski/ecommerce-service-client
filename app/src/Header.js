@@ -10,6 +10,9 @@ function Header() {
             <Link to="/cart">
                 <button>Pokaż koszyk</button>
             </Link>
+            <Link to="/profile">
+                <button>Profil użytkownika</button>
+            </Link>
         </div>
     );
 }
