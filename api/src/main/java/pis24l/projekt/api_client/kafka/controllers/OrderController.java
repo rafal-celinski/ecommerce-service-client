@@ -18,8 +18,7 @@ public class OrderController {
     private static final String TOPIC = "product_orders";
 
     @PostMapping
-    public String placeOrder(@RequestBody ProductOrder productOrder) {
+    public void placeOrder(@RequestBody ProductOrder productOrder) {
         kafkaTemplate.send(TOPIC, productOrder);
-        return "Order placed successfully!";
     }
 }
