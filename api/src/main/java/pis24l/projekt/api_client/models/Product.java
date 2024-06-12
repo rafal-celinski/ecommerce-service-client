@@ -110,7 +110,7 @@ public class Product {
         return location;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
@@ -152,7 +152,7 @@ public class Product {
         this.subcategory = subcategory;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 }
