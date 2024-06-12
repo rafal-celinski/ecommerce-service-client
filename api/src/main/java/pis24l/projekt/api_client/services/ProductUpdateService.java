@@ -1,8 +1,8 @@
-package pis24l.projekt.api_client.service;
+package pis24l.projekt.api_client.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pis24l.projekt.api_client.model.Product;
+import pis24l.projekt.api_client.models.Product;
 import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
 
 import java.util.Optional;

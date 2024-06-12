@@ -18,6 +18,7 @@ import pis24l.projekt.api_client.models.Product;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 import java.util.stream.Collectors;
 
@@ -80,4 +81,12 @@ public class ProductElasticSearchService {
 
         return new PageImpl<>(products, pageable, totalHits);
     }
+
+
+    public Optional<Product> getProductById(String productId) {
+        Product product = elasticsearchTemplate.get(productId, Product.class);
+        return Optional.ofNullable(product);
+    }
+
+
 }
