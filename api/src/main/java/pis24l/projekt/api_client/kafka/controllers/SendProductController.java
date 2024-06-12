@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import pis24l.projekt.api_client.kafka.model.OrderResponse;
-import pis24l.projekt.api_client.kafka.model.ProductOrder;
 import pis24l.projekt.api_client.models.Product;
 import pis24l.projekt.api_client.models.ProductStatus;
 import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
