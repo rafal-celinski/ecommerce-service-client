@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import pis24l.projekt.api_client.kafka.model.OrderResponse;
+import pis24l.projekt.api_client.models.ProductStatus;
 import pis24l.projekt.api_client.services.ProductUpdateService;
 
 @Service
@@ -17,9 +18,9 @@ public class OrderResponseController {
     @KafkaListener(topics = "order_responses", groupId = "group_id")
     public void listen(OrderResponse orderResponse) {
         if (orderResponse.getStatus().equals("SUCCES")) {
-            productUpdateService.updateProductStatus(orderResponse.getProductId(), "Bought");
+            productUpdateService.updateProductStatus(orderResponse.getProductId(), ProductStatus.SOLD);
         } else {
-            productUpdateService.updateProductStatus(orderResponse.getProductId(), "Not Available");
+            productUpdateService.updateProductStatus(orderResponse.getProductId(), ProductStatus.NOT_AVAILABLE);
         }
     }
 }

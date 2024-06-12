@@ -10,7 +10,7 @@ import pis24l.projekt.api_client.services.ProductElasticSearchService;
 import java.io.IOException;
 import java.util.Optional;
 @RestController
-@RequestMapping("/api/cart")
+@RequestMapping("/cart")
 public class ProductAddToCartController {
 
     private final ProductElasticSearchService productElasticSearchService;
