@@ -41,6 +41,8 @@ public class ProductUpdateController {
         updatedProduct.setCategory(product.getCategory());
         updatedProduct.setSubcategory(product.getSubcategory());
         updatedProduct.setDescription(product.getDescription());
+        updatedProduct.setStatus(product.getStatus());
+
 
         productRepository.save(updatedProduct);
 

@@ -10,6 +10,7 @@ import pis24l.projekt.api_client.services.ProductElasticSearchService;
 import pis24l.projekt.api_client.services.ProductSearchMongoService;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:5000")
@@ -45,5 +46,4 @@ public class ProductSearchController {
         Page<Product> products = productElasticSearchService.searchProducts(search, category, subcategory, minPrice, maxPrice, location, pageable);
         return ResponseEntity.ok(products);
     }
-
 }

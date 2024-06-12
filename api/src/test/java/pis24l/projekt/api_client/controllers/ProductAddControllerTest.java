@@ -12,17 +12,16 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import pis24l.projekt.api_client.model.Product;
+import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
+
+import java.math.BigDecimal;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-
-import pis24l.projekt.api_client.models.Product;
-import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
-
-import java.math.BigDecimal;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductAddControllerTest {
@@ -44,7 +43,7 @@ public class ProductAddControllerTest {
 
     @Test
     public void whenPostRequestToProductsAndValidProduct_thenCorrectResponse() throws Exception {
-        Product product = new Product("Laptop", BigDecimal.valueOf(999.99), "Warsaw", "XD", "XD", "High performance laptop with latest specifications");
+        Product product = new Product("Laptop", BigDecimal.valueOf(999.99), "Warsaw", 1L, 1L, "High performance laptop with latest specifications");
         given(productRepository.save(any(Product.class))).willReturn(product);
 
         mockMvc.perform(post("/products/add")

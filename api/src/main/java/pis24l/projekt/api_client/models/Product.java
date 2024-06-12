@@ -5,7 +5,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -32,6 +31,10 @@ public class Product {
     @Size(min = 1, max = 255, message = "Location must be between 1 and 255 characters")
     private String location;
 
+    @NotNull(message = "Status cannot be null")
+    @Size(min = 1, max = 20, message = "Status must be between 1 and 20 characters")
+    private String status;
+
     @CreatedDate
     private LocalDateTime date;
 
@@ -43,17 +46,27 @@ public class Product {
 
     private String description;
 
+
     protected Product() {
-        this.date = LocalDateTime.now();
+        // this.date = LocalDate.now();
+        }
+
+    public String getStatus() {
+        return status;
     }
 
-    public Product(String title, BigDecimal price, String location, String subcategory, String category, String description) {
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Product(String title, BigDecimal price, String location, String subcategory, String category, String description, String status) {
         this.title = title;
         this.price = price;
         this.location = location;
         this.category = category;
         this.subcategory = subcategory;
         this.description = description;
+        this.status = status;
     }
 
     public Product(String id, String title, BigDecimal price) {
@@ -97,7 +110,7 @@ public class Product {
         return location;
     }
 
-    public LocalDateTime getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
@@ -139,7 +152,7 @@ public class Product {
         this.subcategory = subcategory;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 }

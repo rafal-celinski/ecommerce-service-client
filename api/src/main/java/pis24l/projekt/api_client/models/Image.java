@@ -2,6 +2,8 @@ package pis24l.projekt.api_client.models;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 
 @Document(collection = "image")
@@ -10,28 +12,28 @@ public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @Column(name = "product_id")
-    private Long productId;
+    private String productId;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Long getProductId() {
+    public String getProductId() {
         return productId;
     }
 
-    public void setProductId(Long productId) {
+    public void setProductId(String productId) {
         this.productId = productId;
     }
 
-    public Image(Long productId) {
+    public Image(String productId) {
         this.productId = productId;
     }
     protected Image() { }
