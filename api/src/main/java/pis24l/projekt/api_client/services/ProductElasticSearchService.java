@@ -87,6 +87,4 @@ public class ProductElasticSearchService {
         Product product = elasticsearchTemplate.get(productId, Product.class);
         return Optional.ofNullable(product);
     }
-
-
 }
