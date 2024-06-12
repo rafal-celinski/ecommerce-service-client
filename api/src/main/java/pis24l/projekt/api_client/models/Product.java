@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-@Document(indexName = "products") // Elasticsearch index name
+@Document(indexName = "products")
 @org.springframework.data.mongodb.core.mapping.Document(collection = "product")
 public class Product {
 
@@ -31,9 +31,7 @@ public class Product {
     @Size(min = 1, max = 255, message = "Location must be between 1 and 255 characters")
     private String location;
 
-    @NotNull(message = "Status cannot be null")
-    @Size(min = 1, max = 20, message = "Status must be between 1 and 20 characters")
-    private String status;
+    private ProductStatus status;
 
     @CreatedDate
     private LocalDateTime date;
@@ -46,20 +44,11 @@ public class Product {
 
     private String description;
 
+    private List<String> imageUrls;
 
-    protected Product() {
-        // this.date = LocalDate.now();
-        }
+    protected Product() {this.status = ProductStatus.UP;}
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public Product(String title, BigDecimal price, String location, String subcategory, String category, String description, String status) {
+    public Product(String title, BigDecimal price, String location, String subcategory, String category, String description, ProductStatus status) {
         this.title = title;
         this.price = price;
         this.location = location;
@@ -84,41 +73,27 @@ public class Product {
         this.imageUrls = imageUrls;
     }
 
-    private List<String> imageUrls;
-    public List<String> getImageUrls() {
-        return imageUrls;
-    }
+    public List<String> getImageUrls() { return imageUrls;}
 
-    public void setImageUrls(List<String> imageUrls) {
-        this.imageUrls = imageUrls;
-    }
-    public String getId() {
-        return id;
-    }
+    public void setImageUrls(List<String> imageUrls) { this.imageUrls = imageUrls;}
 
-    public String getTitle() {
-        return title;
-    }
+    public String getId() { return id;}
+
+    public String getTitle() { return title;}
 
     public String getDescription() { return description; }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+    public BigDecimal getPrice() { return price;}
 
-    public String getLocation() {
-        return location;
-    }
+    public String getLocation() { return location;}
 
     public LocalDateTime getDate() {
         return date;
     }
 
-
     public String getCategory() {
         return category;
     }
-
 
     public String getSubcategory() {
         return subcategory;
@@ -152,7 +127,9 @@ public class Product {
         this.subcategory = subcategory;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
+    public void setDate(LocalDateTime date) { this.date = date;}
+
+    public ProductStatus getStatus() { return status;}
+
+    public void setStatus(ProductStatus status) { this.status = status;}
 }
