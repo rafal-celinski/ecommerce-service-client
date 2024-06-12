@@ -13,7 +13,7 @@ import pis24l.projekt.api_client.models.Image;
 
 import java.io.IOException;
 
-@CrossOrigin(origins = "http://localhost:5000")
+
 @RestController
 @RequestMapping("/images")
 public class ImageAddController {

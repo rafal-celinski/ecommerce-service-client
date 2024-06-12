@@ -10,7 +10,7 @@ import pis24l.projekt.api_client.services.CategorySearchService;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:5000")
+
 @RestController
 @RequestMapping("/categories")
 public class CategorySearchController {
