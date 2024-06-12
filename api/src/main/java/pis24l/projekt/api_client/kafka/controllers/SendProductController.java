@@ -23,6 +23,6 @@ public class SendProductController {
     }
     @KafkaListener(topics = "product-send", groupId = "group_id")
     public void listen(String ProductId) {
-        productUpdateService.updateProductStatus(ProductId, ProductStatus.SOLD);
+        productUpdateService.updateProductStatus(ProductId, ProductStatus.SENT);
         }
     }

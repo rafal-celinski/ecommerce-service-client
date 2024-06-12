@@ -17,7 +17,7 @@ public class OrderResponseController {
     }
     @KafkaListener(topics = "order_responses", groupId = "group_id")
     public void listen(OrderResponse orderResponse) {
-        if (orderResponse.getStatus().equals("SUCCES")) {
+        if (orderResponse.getStatus().equals("SUCCESS")) {
             productUpdateService.updateProductStatus(orderResponse.getProductId(), ProductStatus.SOLD);
         } else {
             productUpdateService.updateProductStatus(orderResponse.getProductId(), ProductStatus.NOT_AVAILABLE);
