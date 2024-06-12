@@ -1,4 +1,4 @@
-package pis24l.projekt.api_client.model;
+package pis24l.projekt.api_client.models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

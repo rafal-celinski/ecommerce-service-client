@@ -1,4 +1,4 @@
-package pis24l.projekt.api_client.service;
+package pis24l.projekt.api_client.services;
 
 import org.springframework.web.multipart.MultipartFile;
 

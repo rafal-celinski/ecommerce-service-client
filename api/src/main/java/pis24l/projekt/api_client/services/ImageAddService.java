@@ -1,4 +1,4 @@
-package pis24l.projekt.api_client.service;
+package pis24l.projekt.api_client.services;
 
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class ImageAddService {
         this.fileStorage = fileStorage;
     }
 
-    public void uploadImage(MultipartFile file, Long id) throws IOException {
+    public void uploadImage(MultipartFile file, String id) throws IOException {
         Path directoryPath = Paths.get(DIRECTORY);
         if (!Files.exists(directoryPath)) {
             Files.createDirectories(directoryPath);

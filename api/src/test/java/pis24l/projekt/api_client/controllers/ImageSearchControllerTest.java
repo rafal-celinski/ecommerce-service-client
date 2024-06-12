@@ -10,7 +10,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import pis24l.projekt.api_client.service.ImageSearchService;
+import pis24l.projekt.api_client.services.ImageSearchService;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -35,7 +35,7 @@ class ImageSearchControllerTest {
 
     @Test
     void testGetImageById_ImageFound() throws Exception {
-        Long imageId = 1L;
+        String imageId = "abba";
         Path filePath = Paths.get("uploads", imageId + ".jpg");
 
         // Ensure the file exists for the test
@@ -60,7 +60,7 @@ class ImageSearchControllerTest {
 
     @Test
     void testGetImageById_ImageNotFound() {
-        Long imageId = 1L;
+        String imageId = "aba";
 
         when(imageSearchService.findImageFile(imageId)).thenReturn(Optional.empty());
 
@@ -72,7 +72,7 @@ class ImageSearchControllerTest {
 
     @Test
     void testGetImageById_InternalServerError() throws Exception {
-        Long imageId = 1L;
+        String imageId = "abba";
 
         when(imageSearchService.findImageFile(imageId)).thenThrow(new RuntimeException("Error"));
 

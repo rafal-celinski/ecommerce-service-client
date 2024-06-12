@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import pis24l.projekt.api_client.model.Image;
-import pis24l.projekt.api_client.model.Product;
-import pis24l.projekt.api_client.repositories.ImageRepository;
-import pis24l.projekt.api_client.repositories.ProductRepository;
-import pis24l.projekt.api_client.service.ProductSearchService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import pis24l.projekt.api_client.model.Image;
+import pis24l.projekt.api_client.model.Product;
+import pis24l.projekt.api_client.repositories.mongo.ImageRepository;
+import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
+import pis24l.projekt.api_client.service.ProductSearchService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
@@ -45,8 +45,7 @@ public class ProductSearchServiceTest {
 
     @BeforeEach
     public void setup() {
-        MockitoAnnotations.initMocks(this);
-        productSearchService.setEntityManager(entityManager); // Manually inject the mock EntityManager
+        MockitoAnnotations.initMocks(this);// Manually inject the mock EntityManager
     }
 
     private void setupMockQuery(List<Product> productList, long total) {
@@ -84,13 +83,13 @@ public class ProductSearchServiceTest {
         BigDecimal minPrice = BigDecimal.valueOf(0);
         BigDecimal maxPrice = BigDecimal.valueOf(100);
         String search = "searchTerm";
-        Long category = 1L;
-        Long subcategory = 2L;
+        String category = "agasd";
+        String subcategory = "dgag";
         String location = "location";
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = new ArrayList<>();
-        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", 0L, 0L, "xd");
+        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "sdf", "sgsd", "xd");
         productList.add(product);
         long total = 1;
 
@@ -110,13 +109,13 @@ public class ProductSearchServiceTest {
         BigDecimal minPrice = BigDecimal.valueOf(0);
         BigDecimal maxPrice = BigDecimal.valueOf(100);
         String search = "searchTerm";
-        Long category = null;
-        Long subcategory = 2L;
+        String  category = null;
+        String subcategory = "jsdngk";
         String location = "location";
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = new ArrayList<>();
-        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", 0L, 0L, "xd");        productList.add(product);
+        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "sdg", "hbjf", "xd");        productList.add(product);
         long total = 1;
 
         setupMockQuery(productList, total);
@@ -135,13 +134,13 @@ public class ProductSearchServiceTest {
         BigDecimal minPrice = BigDecimal.valueOf(0);
         BigDecimal maxPrice = BigDecimal.valueOf(100);
         String search = "searchTerm";
-        Long category = 1L;
-        Long subcategory = null;
+        String category = "asjnf";
+        String subcategory = null;
         String location = "location";
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = new ArrayList<>();
-        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", 0L, 0L, "xd");        productList.add(product);
+        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "fhgnb", "dhsjb", "xd");        productList.add(product);
         long total = 1;
 
         setupMockQuery(productList, total);
@@ -160,13 +159,13 @@ public class ProductSearchServiceTest {
         BigDecimal minPrice = null;
         BigDecimal maxPrice = null;
         String search = "searchTerm";
-        Long category = 1L;
-        Long subcategory = 2L;
+        String category = "dskgnk";
+        String subcategory = "dbf";
         String location = "location";
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = new ArrayList<>();
-        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", 0L, 0L, "xd");        productList.add(product);
+        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "jdbf", "jsdhbf", "xd");        productList.add(product);
         long total = 1;
 
         setupMockQuery(productList, total);
@@ -185,13 +184,13 @@ public class ProductSearchServiceTest {
         BigDecimal minPrice = BigDecimal.valueOf(0);
         BigDecimal maxPrice = BigDecimal.valueOf(100);
         String search = "searchTerm";
-        Long category = 1L;
-        Long subcategory = 2L;
+        String  category = "dsg";
+        String  subcategory = "shjbf";
         String location = null;
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = new ArrayList<>();
-        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", 0L, 0L, "xd");        productList.add(product);
+        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "sbf", "dk", "xd");        productList.add(product);
         long total = 1;
 
         setupMockQuery(productList, total);
@@ -208,15 +207,15 @@ public class ProductSearchServiceTest {
     public void testSearchProducts_noCriteria() {
         // Given
         String search = "";
-        Long category = null;
-        Long subcategory = null;
+        String category = null;
+        String  subcategory = null;
         BigDecimal minPrice = null;
         BigDecimal maxPrice = null;
         String location = "";
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = new ArrayList<>();
-        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", 0L, 0L, "xd");        productList.add(product);
+        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "kdsg ", "sdjf", "xd");        productList.add(product);
         long total = 1;
 
         setupMockQuery(productList, total);
@@ -233,15 +232,15 @@ public class ProductSearchServiceTest {
     public void testSearchProducts_withPagination() {
         // Given
         String search = "searchTerm";
-        Long category = 1L;
-        Long subcategory = 2L;
+        String category = "sbhaf";
+        String subcategory = "sjh";
         BigDecimal minPrice = BigDecimal.valueOf(0);
         BigDecimal maxPrice = BigDecimal.valueOf(100);
         String location = "location";
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = new ArrayList<>();
-        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", 0L, 0L, "xd");        productList.add(product);
+        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "afs", "sbdg", "xd");        productList.add(product);
         long total = 1;
 
         setupMockQuery(productList, total);
@@ -257,14 +256,14 @@ public class ProductSearchServiceTest {
     @Test
     public void testGetProductById_withImages() {
         // Mock data
-        Long productId = 0L;
+        String productId = "XDXD";
         byte[] imageData = new byte[] {0,2,3,4};
         Product product = new Product(productId,"XD",BigDecimal.valueOf(0));
 
 
-        // Mock behavior
+        // Mock behaviorv
         when(productRepository.findById(productId)).thenReturn(Optional.of(product));
-        when(imageRepository.findByProductId(productId)).thenReturn(Collections.singletonList(new Image(0L)));
+        when(imageRepository.findByProductId(productId)).thenReturn(Collections.singletonList(new Image("XDXD")));
 
         // Call the method
         Product result = productSearchService.getProductById(productId);
@@ -277,15 +276,15 @@ public class ProductSearchServiceTest {
     @Test
     void testGetProductById_notFound() {
         // Mock data
-        when(productRepository.findById(1L)).thenReturn(Optional.empty());
+        when(productRepository.findById("XDXD")).thenReturn(Optional.empty());
 
         // Test & Verify
         RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            productSearchService.getProductById(1L);
+            productSearchService.getProductById("XDXD");
         });
         assertEquals("Product not found with id 1", exception.getMessage());
 
-        verify(productRepository, times(1)).findById(1L);
+        verify(productRepository, times(1)).findById("XDXD");
     }
 
 

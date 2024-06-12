@@ -3,7 +3,6 @@ package pis24l.projekt.api_client.services;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pis24l.projekt.api_client.service.ImageSearchService;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -38,7 +37,7 @@ public class ImageSearchServiceTest {
 
     @Test
     void testFindImageFile_FileFound() throws Exception {
-        Long imageId = 1L;
+        String imageId = "abba";
         Path jpgFilePath = tempDir.resolve(imageId + ".jpg");
         Files.createFile(jpgFilePath);
 
@@ -50,7 +49,7 @@ public class ImageSearchServiceTest {
 
     @Test
     void testFindImageFile_FileNotFound() {
-        Long imageId = 1L;
+        String imageId = "abba";
 
         Optional<Path> result = imageSearchService.findImageFile(imageId);
 
@@ -59,7 +58,7 @@ public class ImageSearchServiceTest {
 
     @Test
     void testFindImageFile_MultipleExtensions() throws Exception {
-        Long imageId = 1L;
+        String imageId = "abba";
         Path pngFilePath = tempDir.resolve(imageId + ".png");
         Files.createFile(pngFilePath);
 
