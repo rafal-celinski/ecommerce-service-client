@@ -9,6 +9,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 import pis24l.projekt.api_client.models.Product;
+import pis24l.projekt.api_client.models.ProductStatus;
 import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
 
 import java.util.ArrayList;
@@ -30,7 +31,7 @@ public class ProductSearchMongoService {
     }
 
 
-    public Page<Product> searchProducts(String search, String category, String subcategory, String location, String status, Pageable pageable) {
+    public Page<Product> searchProducts(String search, String category, String subcategory, String location, ProductStatus status, Pageable pageable) {
         Query query = new Query();
         List<Criteria> criteriaList = new ArrayList<>();
 
@@ -48,7 +49,7 @@ public class ProductSearchMongoService {
         if (subcategory != null && !subcategory.isEmpty()) {
             criteriaList.add(Criteria.where("subcategory").is(subcategory));
         }
-        if (status != null && !status.isEmpty()) {
+        if (status != null) {
             criteriaList.add(Criteria.where("status").is(status));
         }
 
