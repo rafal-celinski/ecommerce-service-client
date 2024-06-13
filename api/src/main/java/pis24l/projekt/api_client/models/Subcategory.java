@@ -17,4 +17,8 @@ public class Subcategory {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Subcategory(String name) {
+        this.name = name;
+    }
 }

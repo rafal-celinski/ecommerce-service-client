@@ -12,7 +12,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-import pis24l.projekt.api_client.model.Product;
+import pis24l.projekt.api_client.models.Product;
+import pis24l.projekt.api_client.models.ProductStatus;
 import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
 
 import java.math.BigDecimal;
@@ -43,7 +44,7 @@ public class ProductAddControllerTest {
 
     @Test
     public void whenPostRequestToProductsAndValidProduct_thenCorrectResponse() throws Exception {
-        Product product = new Product("Laptop", BigDecimal.valueOf(999.99), "Warsaw", 1L, 1L, "High performance laptop with latest specifications");
+        Product product = new Product("Laptop", BigDecimal.valueOf(999.99), "Warsaw", "1", "1", "High performance laptop with latest specifications", ProductStatus.UP);
         given(productRepository.save(any(Product.class))).willReturn(product);
 
         mockMvc.perform(post("/products/add")
@@ -51,8 +52,8 @@ public class ProductAddControllerTest {
                         .content("{\"title\":\"Laptop\"," +
                                 "\"price\":999.99," +
                                 "\"location\": \"Warsaw\"," +
-                                "\"category\": 1," +
-                                "\"subcategory\": 1," +
+                                "\"category\": \"1\"," +
+                                "\"subcategory\": \"1\"," +
                                 "\"description\": \"High performance laptop with latest specifications\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.title").value("Laptop"));
@@ -65,7 +66,7 @@ public class ProductAddControllerTest {
                         .content("{\"title\":\"Laptop\"," +
                                 "\"price\":999.99," +
                                 "\"location\": \"Warsaw\"," +
-                                "\"category\": 1," +
+                                "\"category\": \"1\"," +
                                 "\"description\": \"High performance laptop with latest specifications\"}"))
                 .andExpect(status().isBadRequest());
     }

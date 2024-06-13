@@ -1,20 +1,26 @@
 package pis24l.projekt.api_client;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
+import org.springframework.data.mongodb.core.MongoTemplate;
+
 
 @SpringBootTest
 class ApiApplicationTests {
 
-    @TestConfiguration
-    @ComponentScan(basePackages = "pis24l.projekt.api_client")
-    static class HelloControllerTestConfig {
-        // This class will be automatically picked up by Spring Boot as a test configuration
+    @Mock
+    private MongoTemplate mongoTemplate;
+
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
     }
+
     @Test
     void contextLoads() {
     }
-
 }
