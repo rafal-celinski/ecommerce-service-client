@@ -44,6 +44,12 @@ public class ProductElasticSearchService {
                     .fuzziness("AUTO"));
         }
 
+        if (location != null && !location.isEmpty()) {
+            boolQueryBuilder.must(QueryBuilders.multiMatchQuery(location)
+                    .field("location")
+                    .fuzziness("AUTO"));
+        }
+
         if (category != null && !category.isEmpty()) {
             boolQueryBuilder.filter(QueryBuilders.termQuery("category.keyword", category));
         }
@@ -61,10 +67,6 @@ public class ProductElasticSearchService {
                 rangeQuery.lte(maxPrice);
             }
             boolQueryBuilder.filter(rangeQuery);
-        }
-
-        if (location != null && !location.isEmpty()) {
-            boolQueryBuilder.filter(QueryBuilders.termQuery("location.keyword", location));
         }
 
         NativeSearchQuery searchQuery = new NativeSearchQueryBuilder()
