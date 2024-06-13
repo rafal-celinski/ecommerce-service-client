@@ -8,18 +8,19 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+import pis24l.projekt.api_client.model.Product;
 import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
-import pis24l.projekt.api_client.models.Product;
 
 import java.math.BigDecimal;
 import java.util.Optional;
+
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
 @WebMvcTest(ProductUpdateController.class)
@@ -33,7 +34,7 @@ public class ProductUpdateControllerTest {
 
     @Test
     public void whenUpdateProductWithExistingId_thenProductIsUpdated() throws Exception {
-        Product product = new Product("Laptop", BigDecimal.valueOf(1200.00), "Online", "XD", "XD", "High performance laptop");
+        Product product = new Product("Laptop", BigDecimal.valueOf(1200.00), "Online", 1L, 1L, "High performance laptop");
         product.setId("XDXD");
         given(productRepository.findById("XDXD")).willReturn(Optional.of(product));
         given(productRepository.save(any(Product.class))).willReturn(product);
@@ -67,7 +68,7 @@ public class ProductUpdateControllerTest {
 
     @Test
     public void whenUpdateProductWithExistingIdButIncorrectData_thenProductIsNotUpdated() throws Exception {
-        Product product = new Product("Laptop", BigDecimal.valueOf(1200.00), "Online", "XD", "XD", "High performance laptop");
+        Product product = new Product("Laptop", BigDecimal.valueOf(1200.00), "Online", 1L, 1L, "High performance laptop");
         product.setId("XDXD");
         given(productRepository.findById("XDXD")).willReturn(Optional.of(product));
         given(productRepository.save(any(Product.class))).willReturn(product);
@@ -83,3 +84,5 @@ public class ProductUpdateControllerTest {
                 .andExpect(status().isBadRequest());
     }
 }
+
+

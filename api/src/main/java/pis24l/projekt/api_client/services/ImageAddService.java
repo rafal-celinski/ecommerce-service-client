@@ -20,7 +20,7 @@ public class ImageAddService {
         this.fileStorage = fileStorage;
     }
 
-    public void uploadImage(MultipartFile file, Long id) throws IOException {
+    public void uploadImage(MultipartFile file, String id) throws IOException {
         Path directoryPath = Paths.get(DIRECTORY);
         if (!Files.exists(directoryPath)) {
             Files.createDirectories(directoryPath);

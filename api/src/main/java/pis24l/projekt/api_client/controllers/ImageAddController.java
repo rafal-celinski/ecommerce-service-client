@@ -13,7 +13,7 @@ import pis24l.projekt.api_client.models.Image;
 
 import java.io.IOException;
 
-@CrossOrigin(origins = "http://localhost:5000")
+
 @RestController
 @RequestMapping("/images")
 public class ImageAddController {
@@ -29,7 +29,7 @@ public class ImageAddController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<?> addFile(@RequestParam("image") MultipartFile file, @RequestParam("productId") Long productId) {
+    public ResponseEntity<?> addFile(@RequestParam("image") MultipartFile file, @RequestParam("productId") String productId) {
         if (!imageAddService.isImageFile(file)) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid file type.");
         }

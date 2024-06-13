@@ -13,7 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:5000")
+
 @RestController
 @RequestMapping("/images")
 public class ImageSearchController {
@@ -26,7 +26,7 @@ public class ImageSearchController {
     }
 
     @GetMapping("/{imageId}")
-    public ResponseEntity<?> getImageById(@PathVariable Long imageId) {
+    public ResponseEntity<?> getImageById(@PathVariable String imageId) {
         try {
             Optional<Path> filePathOptional = imageSearchService.findImageFile(imageId);
             if (filePathOptional.isEmpty()) {

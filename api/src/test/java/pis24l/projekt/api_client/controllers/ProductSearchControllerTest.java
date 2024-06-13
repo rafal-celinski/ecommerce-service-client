@@ -15,19 +15,16 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import pis24l.projekt.api_client.models.Product;
-import pis24l.projekt.api_client.services.ProductSearchService;
+import pis24l.projekt.api_client.model.Product;
+import pis24l.projekt.api_client.service.ProductSearchService;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 public class ProductSearchControllerTest {
 
@@ -54,16 +51,17 @@ public class ProductSearchControllerTest {
         BigDecimal minPrice = BigDecimal.valueOf(0);
         BigDecimal maxPrice = BigDecimal.valueOf(100);
         String search = "searchTerm";
-        Long category = 1L;
-        Long subcategory = 2L;
+        String category = "dg";
+        String subcategory = "asjnf";
         String location = "location";
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = new ArrayList<>();
-        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "XD", "XD", "xd");        productList.add(product);
+        Product product = new Product("xd", BigDecimal.valueOf(20), "Warszawa", "asf", "dsg", "xd");
+        productList.add(product);
         long total = 1;
 
-        when(productSearchService.searchProducts(anyString(), anyLong(), anyLong(), any(BigDecimal.class), any(BigDecimal.class), anyString(), eq(pageable)))
+        when(productSearchService.searchProducts(anyString(), anyString(), anyString(), any(BigDecimal.class), any(BigDecimal.class), anyString(), eq(pageable)))
                 .thenReturn(new PageImpl<>(productList, pageable, total));
 
         // When

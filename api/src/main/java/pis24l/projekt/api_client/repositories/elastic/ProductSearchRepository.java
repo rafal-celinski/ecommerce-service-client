@@ -8,5 +8,4 @@ import java.util.List;
 
 @Repository
 public interface ProductSearchRepository extends ElasticsearchRepository<Product, String> {
-    List<Product> findByTitleContainingOrDescriptionContaining(String title, String description);
 }

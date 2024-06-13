@@ -35,7 +35,7 @@ class ImageSearchControllerTest {
 
     @Test
     void testGetImageById_ImageFound() throws Exception {
-        Long imageId = 1L;
+        String imageId = "abba";
         Path filePath = Paths.get("uploads", imageId + ".jpg");
 
         // Ensure the file exists for the test
@@ -60,7 +60,7 @@ class ImageSearchControllerTest {
 
     @Test
     void testGetImageById_ImageNotFound() {
-        Long imageId = 1L;
+        String imageId = "aba";
 
         when(imageSearchService.findImageFile(imageId)).thenReturn(Optional.empty());
 
@@ -72,7 +72,7 @@ class ImageSearchControllerTest {
 
     @Test
     void testGetImageById_InternalServerError() throws Exception {
-        Long imageId = 1L;
+        String imageId = "abba";
 
         when(imageSearchService.findImageFile(imageId)).thenThrow(new RuntimeException("Error"));
 

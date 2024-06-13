@@ -5,7 +5,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,7 +12,7 @@ import javax.validation.constraints.Size;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-@Document(indexName = "products") // Elasticsearch index name
+@Document(indexName = "products")
 @org.springframework.data.mongodb.core.mapping.Document(collection = "product")
 public class Product {
 
@@ -32,6 +31,8 @@ public class Product {
     @Size(min = 1, max = 255, message = "Location must be between 1 and 255 characters")
     private String location;
 
+    private ProductStatus status;
+
     @CreatedDate
     private LocalDateTime date;
 
@@ -43,17 +44,18 @@ public class Product {
 
     private String description;
 
-    protected Product() {
-        this.date = LocalDateTime.now();
-    }
+    private List<String> imageUrls;
 
-    public Product(String title, BigDecimal price, String location, String subcategory, String category, String description) {
+    protected Product() {this.status = ProductStatus.UP;}
+
+    public Product(String title, BigDecimal price, String location, String subcategory, String category, String description, ProductStatus status) {
         this.title = title;
         this.price = price;
         this.location = location;
         this.category = category;
         this.subcategory = subcategory;
         this.description = description;
+        this.status = status;
     }
 
     public Product(String id, String title, BigDecimal price) {
@@ -71,41 +73,27 @@ public class Product {
         this.imageUrls = imageUrls;
     }
 
-    private List<String> imageUrls;
-    public List<String> getImageUrls() {
-        return imageUrls;
-    }
+    public List<String> getImageUrls() { return imageUrls;}
 
-    public void setImageUrls(List<String> imageUrls) {
-        this.imageUrls = imageUrls;
-    }
-    public String getId() {
-        return id;
-    }
+    public void setImageUrls(List<String> imageUrls) { this.imageUrls = imageUrls;}
 
-    public String getTitle() {
-        return title;
-    }
+    public String getId() { return id;}
+
+    public String getTitle() { return title;}
 
     public String getDescription() { return description; }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+    public BigDecimal getPrice() { return price;}
 
-    public String getLocation() {
-        return location;
-    }
+    public String getLocation() { return location;}
 
     public LocalDateTime getDate() {
         return date;
     }
 
-
     public String getCategory() {
         return category;
     }
-
 
     public String getSubcategory() {
         return subcategory;
@@ -139,7 +127,9 @@ public class Product {
         this.subcategory = subcategory;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
+    public void setDate(LocalDateTime date) { this.date = date;}
+
+    public ProductStatus getStatus() { return status;}
+
+    public void setStatus(ProductStatus status) { this.status = status;}
 }

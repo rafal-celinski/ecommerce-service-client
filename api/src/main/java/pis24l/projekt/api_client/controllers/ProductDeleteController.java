@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
 
-@CrossOrigin(origins = "http://localhost:5000")
+
 @RestController
 @RequestMapping("/products")
 public class ProductDeleteController {
@@ -24,7 +24,6 @@ public class ProductDeleteController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
         }
 
-        productRepository.deleteById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }

@@ -11,7 +11,7 @@ import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
 import javax.validation.Valid;
 import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:5000")
+
 @RestController
 @RequestMapping("/products")
 public class ProductUpdateController {
@@ -41,6 +41,8 @@ public class ProductUpdateController {
         updatedProduct.setCategory(product.getCategory());
         updatedProduct.setSubcategory(product.getSubcategory());
         updatedProduct.setDescription(product.getDescription());
+        updatedProduct.setStatus(product.getStatus());
+
 
         productRepository.save(updatedProduct);
 
