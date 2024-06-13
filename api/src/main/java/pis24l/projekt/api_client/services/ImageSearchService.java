@@ -1,4 +1,4 @@
-package pis24l.projekt.api_client.service;
+package pis24l.projekt.api_client.services;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ public class ImageSearchService {
         this.uploadDir = uploadDir;
     }
 
-    public Optional<Path> findImageFile(Long imageId) {
+    public Optional<Path> findImageFile(String imageId) {
         for (String extension : allowedExtensions) {
             Path filePath = Paths.get(uploadDir, imageId + "." + extension);
             if (Files.exists(filePath)) {

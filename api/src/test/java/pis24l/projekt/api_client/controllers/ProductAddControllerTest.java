@@ -12,17 +12,16 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import pis24l.projekt.api_client.model.Product;
+import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
+
+import java.math.BigDecimal;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-
-import pis24l.projekt.api_client.model.Product;
-import pis24l.projekt.api_client.repositories.ProductRepository;
-
-import java.math.BigDecimal;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(MockitoExtension.class)
 public class ProductAddControllerTest {

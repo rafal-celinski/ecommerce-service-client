@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import pis24l.projekt.api_client.model.Category;
-import pis24l.projekt.api_client.service.CategorySearchService;
+import pis24l.projekt.api_client.models.Category;
+import pis24l.projekt.api_client.services.CategorySearchService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +30,10 @@ public class CategorySearchControllerTest {
     public void testGetAllCategories() {
         // Given
         List<Category> categories = new ArrayList<>();
-        categories.add(new Category(0L,"Category 1"));
-        categories.add(new Category(0L, "Category 2"));
+        categories.add(new Category("XD","Category 1"));
+        categories.add(new Category("XD", "Category 2"));
 
-        when(categorySearchService.getAllCategories()).thenReturn(categories);
+        when(categorySearchService.findAll()).thenReturn(categories);
 
         // When
         List<Category> result = categorySearchController.getAllCategories();

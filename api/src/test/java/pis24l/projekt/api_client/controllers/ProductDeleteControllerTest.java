@@ -8,13 +8,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
 
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-
-import pis24l.projekt.api_client.repositories.ProductRepository;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(ProductDeleteController.class)
@@ -28,7 +27,7 @@ public class ProductDeleteControllerTest {
 
     @Test
     public void deleteProduct_WhenProductExists_ShouldReturnNoContent() throws Exception {
-        Long productId = 1L;
+        String productId = "XDXD";
         when(productRepository.existsById(productId)).thenReturn(true);
         doNothing().when(productRepository).deleteById(productId);
 
@@ -38,7 +37,7 @@ public class ProductDeleteControllerTest {
 
     @Test
     public void deleteProduct_WhenProductDoesNotExist_ShouldReturnNotFound() throws Exception {
-        Long productId = 2L;
+        String productId = "XDXD";
         when(productRepository.existsById(productId)).thenReturn(false);
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/products/delete/{id}", productId))
