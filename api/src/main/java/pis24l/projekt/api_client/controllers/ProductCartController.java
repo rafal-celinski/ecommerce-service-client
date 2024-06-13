@@ -9,7 +9,7 @@ import pis24l.projekt.api_client.models.Product;
 import pis24l.projekt.api_client.models.ProductStatus;
 import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
 import pis24l.projekt.api_client.services.ProductElasticSearchService;
-import pis24l.projekt.api_client.services.ProductSearchMongoService;
+import pis24l.projekt.api_client.services.ProductMongoSearchService;
 
 import java.util.Optional;
 @RestController
@@ -18,13 +18,13 @@ public class ProductCartController {
 
     private final ProductElasticSearchService productElasticSearchService;
     private final ProductRepository productRepository;
-    private final ProductSearchMongoService productSearchMongoService;
+    private final ProductMongoSearchService productMongoSearchService;
 
     @Autowired
-    public ProductCartController(ProductElasticSearchService productElasticSearchService, ProductRepository productRepository, ProductSearchMongoService productSearchMongoService) {
+    public ProductCartController(ProductElasticSearchService productElasticSearchService, ProductRepository productRepository, ProductMongoSearchService productMongoSearchService) {
         this.productElasticSearchService = productElasticSearchService;
         this.productRepository = productRepository;
-        this.productSearchMongoService = productSearchMongoService;
+        this.productMongoSearchService = productMongoSearchService;
     }
 
     @GetMapping("/add/{productId}")
@@ -50,7 +50,7 @@ public class ProductCartController {
             @RequestParam(required = false) String location,
             @RequestParam(required = false) ProductStatus status,
             Pageable pageable) {
-        Page<Product> products = productSearchMongoService.searchProducts(search, category, subcategory, location, status, pageable);
+        Page<Product> products = productMongoSearchService.searchProducts(search, category, subcategory, location, status, pageable);
         return ResponseEntity.ok(products);
     }
 }

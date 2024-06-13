@@ -14,18 +14,15 @@ import pis24l.projekt.api_client.repositories.mongo.ProductRepository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Service
-public class ProductSearchMongoService {
+public class ProductMongoSearchService {
 
     private final ProductRepository productRepository;
     private final MongoTemplate mongoTemplate;
 
     @Autowired
-    public ProductSearchMongoService(ProductRepository productRepository, MongoTemplate mongoTemplate) {
+    public ProductMongoSearchService(ProductRepository productRepository, MongoTemplate mongoTemplate) {
         this.productRepository = productRepository;
         this.mongoTemplate = mongoTemplate;
     }
