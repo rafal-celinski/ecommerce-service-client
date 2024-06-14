@@ -2,10 +2,13 @@ version: '3.8'
 
 services:
   api:
-    build: ./api  # Ścieżka do katalogu zawierającego Dockerfile dla aplikacji
+    build: ./api
     ports:
       - "8080:8080"
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${DB_NAME}
-      SPRING_DATASOURCE_USERNAME: ${DB_USER}
-      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+    networks:
+      - client_net
+
+networks:
+  client_net:
+    driver: bridge
+

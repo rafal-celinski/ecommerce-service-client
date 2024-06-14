@@ -1,17 +1,20 @@
 version: '3.8'
 
 services:
-  mongodb:
+  mongo:
     image: mongo:latest
-    container_name: ecommerce_mongo
     environment:
-      MONGO_INITDB_DATABASE: ${DB_NAME}
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_PASSWORD}
-    ports:
-      - "27017:27017"
+      MONGO_INITDB_DATABASE: pis
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: password
     volumes:
       - mongo-data:/data/db
+    networks:
+      - client_net
 
 volumes:
   mongo-data:
+
+networks:
+  client_net:
+    driver: bridge
