@@ -42,15 +42,17 @@ public class ProductCartController {
         }
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<Page<Product>> searchCart(
-            @RequestParam(required = false) String search,
-            @RequestParam(required = false) String category,
-            @RequestParam(required = false) String subcategory,
-            @RequestParam(required = false) String location,
-            @RequestParam(required = false) ProductStatus status,
+    @GetMapping("/list-all")
+    public ResponseEntity<Page<Product>> listCart(
             Pageable pageable) {
-        Page<Product> products = productMongoSearchService.searchProducts(search, category, subcategory, location, status, pageable);
+        Page<Product> products = productMongoSearchService.listCart(pageable);
+        return ResponseEntity.ok(products);
+    }
+
+    @GetMapping("/archive")
+    public ResponseEntity<Page<Product>> listArchive(Pageable pageable)
+    {
+        Page<Product> products = productMongoSearchService.listDone(pageable);
         return ResponseEntity.ok(products);
     }
 }

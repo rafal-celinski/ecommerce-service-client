@@ -27,39 +27,27 @@ public class ProductMongoSearchService {
         this.mongoTemplate = mongoTemplate;
     }
 
-
-    public Page<Product> searchProducts(String search, String category, String subcategory, String location, ProductStatus status, Pageable pageable) {
+    public Page<Product> listCart(Pageable pageable) {
         Query query = new Query();
-        List<Criteria> criteriaList = new ArrayList<>();
-
-        if (search != null && !search.isEmpty()) {
-            criteriaList.add(Criteria.where("title").regex(search, "i"));
-        }
-
-        if (location != null && !location.isEmpty()) {
-            criteriaList.add(Criteria.where("location").regex(location, "i"));
-        }
-
-        if (category != null && !category.isEmpty()) {
-            criteriaList.add(Criteria.where("category").is(category));
-        }
-        if (subcategory != null && !subcategory.isEmpty()) {
-            criteriaList.add(Criteria.where("subcategory").is(subcategory));
-        }
-        if (status != null) {
-            criteriaList.add(Criteria.where("status").is(status));
-        }
-
-        if (!criteriaList.isEmpty()) {
-            query.addCriteria(new Criteria().andOperator(criteriaList.toArray(new Criteria[0])));
-        }
-
+        query.addCriteria(Criteria.where("status").is(ProductStatus.UP));
         query.with(pageable);
 
         List<Product> products = mongoTemplate.find(query, Product.class);
         long count = mongoTemplate.count(query, Product.class);
 
         return new PageImpl<>(products, pageable, count);
+    }
+
+    public Page<Product> listDone(Pageable pageable) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("status").ne(ProductStatus.UP));
+        query.with(pageable);
+
+        List<Product> products = mongoTemplate.find(query, Product.class);
+        long count = mongoTemplate.count(query, Product.class);
+
+        return new PageImpl<>(products, pageable, count);
+
     }
 
 }
