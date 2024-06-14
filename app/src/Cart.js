@@ -13,15 +13,15 @@ function Cart() {
     }, []);
 
     async function fetchCart() {
-            //fetch(process.env.REACT_APP_API_URL + `/cart`)
-            fetch(process.env.REACT_APP_API_URL + "/cart")
+
+            fetch(process.env.REACT_APP_API_URL + "/cart/list-all?size=50")
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Could not fetch cart');
                     }
                     return response.json();
                 })
-                .then(data => setCart(data))
+                .then(data => setCart(data.content))
                 .catch(caught_error => setCart([]))
                 .finally(() => setLoading(false));
     }
@@ -54,6 +54,20 @@ function Cart() {
         updateCart(updatedCart);
     }
 
+    function buy() {
+        for (let i = 0; i < cart.length; i++) {
+            fetch(process.env.REACT_APP_API_URL + "/order/" + cart[i].id, {
+                method: 'POST'
+
+            }).then(() => {
+                alert('Zamówienie zostało złożone');
+            })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+    }
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -75,21 +89,15 @@ function Cart() {
                     {cart.map((item) => (
                         <div className="Product" key={item.id}>
                             <div className="ProductImage">
-                                <img src={item.imageUrl[0]} alt="" />
+
+                                {item.imageUrls !== null && <img src={process.env.REACT_APP_API_URL + item.imageUrls[0]} alt="" />}
                             </div>
                             <div className="ProductInfo">
                                 <Link className="ProductTitle" to={`/auction/${item.id}`}>
                                     {item.title}
                                 </Link>
-                                <div className="ProductQuantity">
-                                    <input
-                                        type="number"
-                                        min = "1"
-                                        value={item.quantity}
-                                        onChange={(e) => handleQuantityChange(item.id, parseInt(e.target.value))}
-                                    />
-                                </div>
-                                <div className="ProductTotalPrice">{item.price * item.quantity} zł</div>
+
+                                <div className="ProductTotalPrice">{parseInt(item.price) * 1} zł</div>
                                 <button className="ProductRemove" onClick={() => handleRemoveItem(item.id)}>Usuń</button>
                             </div>
                         </div>
@@ -97,9 +105,9 @@ function Cart() {
                 </div>
                 <div className="CartSummary">
                     <div className="CartTotalPrice">
-                        Łączna kwota: {cart.reduce((acc, item) => acc + item.price * item.quantity, 0)} zł
+                        Łączna kwota: {cart.reduce((acc, item) => acc + item.price * 1, 0)} zł
                     </div>
-                        <button className="CartCheckout">Przejdź do kasy</button>
+                        <button className="CartCheckout" onClick={buy}>Przejdź do kasy</button>
 
                 </div>
             </div>

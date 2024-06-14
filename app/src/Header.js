@@ -11,7 +11,7 @@ function Header() {
                 <button>Pokaż koszyk</button>
             </Link>
             <Link to="/profile">
-                <button>Profil użytkownika</button>
+                <button>Historia zakupów</button>
             </Link>
         </div>
     );
