@@ -49,7 +49,6 @@ public class ProductMongoSearchServiceTest {
         String category = "category";
         String subcategory = "subcategory";
         String location = "location";
-        ProductStatus status = ProductStatus.UP;
         Pageable pageable = PageRequest.of(0, 10);
 
         List<Product> productList = Collections.singletonList(
@@ -59,7 +58,7 @@ public class ProductMongoSearchServiceTest {
         when(mongoTemplate.count(any(Query.class), eq(Product.class))).thenReturn(1L);
 
         // When
-        Page<Product> result = productMongoSearchService.searchProducts(search, category, subcategory, location, status, pageable);
+        Page<Product> result = productMongoSearchService.listCart(pageable);
 
         // Then
         assertEquals(1, result.getTotalElements());
@@ -85,7 +84,7 @@ public class ProductMongoSearchServiceTest {
         when(mongoTemplate.count(any(Query.class), eq(Product.class))).thenReturn(1L);
 
         // When
-        Page<Product> result = productMongoSearchService.searchProducts(search, category, subcategory, location, status, pageable);
+        Page<Product> result = productMongoSearchService.listDone(pageable);
 
         // Then
         assertEquals(1, result.getTotalElements());
@@ -94,109 +93,4 @@ public class ProductMongoSearchServiceTest {
         verify(mongoTemplate, times(1)).count(any(Query.class), eq(Product.class));
     }
 
-    @Test
-    public void testSearchProducts_withoutSubcategory() {
-        // Given
-        String search = "searchTerm";
-        String category = "category";
-        String subcategory = null;
-        String location = "location";
-        ProductStatus status = ProductStatus.UP;
-        Pageable pageable = PageRequest.of(0, 10);
-
-        List<Product> productList = Collections.singletonList(
-                new Product("title", BigDecimal.valueOf(20), "Warsaw", "subcategory", "category", "description", ProductStatus.UP));
-
-        when(mongoTemplate.find(any(Query.class), eq(Product.class))).thenReturn(productList);
-        when(mongoTemplate.count(any(Query.class), eq(Product.class))).thenReturn(1L);
-
-        // When
-        Page<Product> result = productMongoSearchService.searchProducts(search, category, subcategory, location, status, pageable);
-
-        // Then
-        assertEquals(1, result.getTotalElements());
-        assertEquals(1, result.getContent().size());
-        verify(mongoTemplate, times(1)).find(any(Query.class), eq(Product.class));
-        verify(mongoTemplate, times(1)).count(any(Query.class), eq(Product.class));
-    }
-
-    @Test
-    public void testSearchProducts_withoutLocation() {
-        // Given
-        String search = "searchTerm";
-        String category = "category";
-        String subcategory = "subcategory";
-        String location = null;
-        ProductStatus status = ProductStatus.UP;
-        Pageable pageable = PageRequest.of(0, 10);
-
-        List<Product> productList = Collections.singletonList(
-                new Product("title", BigDecimal.valueOf(20), "Warsaw", "subcategory", "category", "description",
-                        ProductStatus.UP));
-
-        when(mongoTemplate.find(any(Query.class), eq(Product.class))).thenReturn(productList);
-        when(mongoTemplate.count(any(Query.class), eq(Product.class))).thenReturn(1L);
-
-        // When
-        Page<Product> result = productMongoSearchService.searchProducts(search, category, subcategory, location, status, pageable);
-
-        // Then
-        assertEquals(1, result.getTotalElements());
-        assertEquals(1, result.getContent().size());
-        verify(mongoTemplate, times(1)).find(any(Query.class), eq(Product.class));
-        verify(mongoTemplate, times(1)).count(any(Query.class), eq(Product.class));
-    }
-
-    @Test
-    public void testSearchProducts_withoutStatus() {
-        // Given
-        String search = "searchTerm";
-        String category = "category";
-        String subcategory = "subcategory";
-        String location = "location";
-        ProductStatus status = null;
-        Pageable pageable = PageRequest.of(0, 10);
-
-        List<Product> productList = Collections.singletonList(
-                new Product("title", BigDecimal.valueOf(20), "Warsaw", "subcategory", "category", "description",
-                        ProductStatus.UP));
-
-        when(mongoTemplate.find(any(Query.class), eq(Product.class))).thenReturn(productList);
-        when(mongoTemplate.count(any(Query.class), eq(Product.class))).thenReturn(1L);
-
-        // When
-        Page<Product> result = productMongoSearchService.searchProducts(search, category, subcategory, location, status, pageable);
-
-        // Then
-        assertEquals(1, result.getTotalElements());
-        assertEquals(1, result.getContent().size());
-        verify(mongoTemplate, times(1)).find(any(Query.class), eq(Product.class));
-        verify(mongoTemplate, times(1)).count(any(Query.class), eq(Product.class));
-    }
-
-    @Test
-    public void testSearchProducts_withNoCriteria() {
-        // Given
-        String search = "";
-        String category = "";
-        String subcategory = "";
-        String location = "";
-        ProductStatus status = null;
-        Pageable pageable = PageRequest.of(0, 10);
-
-        List<Product> productList = Collections.singletonList(
-                new Product("title", BigDecimal.valueOf(20), "Warsaw", "subcategory", "category", "description", ProductStatus.UP));
-
-        when(mongoTemplate.find(any(Query.class), eq(Product.class))).thenReturn(productList);
-        when(mongoTemplate.count(any(Query.class), eq(Product.class))).thenReturn(1L);
-
-        // When
-        Page<Product> result = productMongoSearchService.searchProducts(search, category, subcategory, location, status, pageable);
-
-        // Then
-        assertEquals(1, result.getTotalElements());
-        assertEquals(1, result.getContent().size());
-        verify(mongoTemplate, times(1)).find(any(Query.class), eq(Product.class));
-        verify(mongoTemplate, times(1)).count(any(Query.class), eq(Product.class));
-    }
 }
