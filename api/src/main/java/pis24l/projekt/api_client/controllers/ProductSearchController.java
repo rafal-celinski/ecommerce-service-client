@@ -9,6 +9,7 @@ import pis24l.projekt.api_client.models.Product;
 import pis24l.projekt.api_client.services.ProductElasticSearchService;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 
 @RestController
@@ -34,5 +35,12 @@ public class ProductSearchController {
             Pageable pageable) {
         Page<Product> products = productElasticSearchService.searchProducts(search, category, subcategory, minPrice, maxPrice, location, pageable);
         return ResponseEntity.ok(products);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable("id") String id) {
+        Optional<Product> product = productElasticSearchService.getProductById(id);
+        if (product.isPresent()) { return ResponseEntity.ok(product.get());}
+        else return ResponseEntity.notFound().build();
     }
 }
