@@ -11,7 +11,6 @@ function UserProfile() {
         <div>
             <Header />
             <div className="UserProfile">
-                <UserData />
                 <PurchaseHistory />
             </div>
         </div>

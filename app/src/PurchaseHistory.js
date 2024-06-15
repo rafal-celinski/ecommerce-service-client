@@ -6,9 +6,9 @@ function PurchaseHistory() {
     const [history, setHistory] = useState(null);
 
     function fetchHistory() {
-        fetch("http://localhost:8000/history.json")
+        fetch(process.env.REACT_APP_API_URL + "/cart/archive?size=50")
             .then(response => response.json())
-            .then(data => setHistory(data));
+            .then(data => setHistory(data.content));
     }
 
     useEffect(fetchHistory, []);
@@ -49,16 +49,14 @@ function PurchaseHistory() {
                 {history.map((item) => (
                     <div className="Product" key={item.id}>
                         <div className="ProductImage">
-                            <img src={item.imageUrl[0]} alt="" />
+                            {item.imageUrls !== null && <img src={process.env.REACT_APP_API_URL + item.imageUrl[0]} alt="" />}
                         </div>
                         <div className="ProductInfo">
                             <Link className="ProductTitle" to={`/auction/${item.id}`}>
                                 {item.title}
                             </Link>
-                            <div className="ProductQuantity">
-                               {item.quantity}x{item.price}zł
-                            </div>
-                            <div className="ProductTotalPrice">{item.price * item.quantity} zł</div>
+
+                            <div className="ProductTotalPrice">{item.price} zł</div>
                             <div className="ProductDateAndState">
                                 <span>{formatDate(item.date)}</span>
                                 <span className="ProductState">{formatState(item.state)}</span>

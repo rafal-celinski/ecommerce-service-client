@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './style.css';
 
 function FilterForm({setFilterData}) {
+    const [categories, setCategories] = useState([]);
     const [formData, setFormData] = useState({
         search: '',
 
@@ -13,7 +14,7 @@ function FilterForm({setFilterData}) {
         location: '',
     });
 
-    useEffect(() => {setFilterData(formData);}, []);
+
 
     function handleChange(e) {
         const { name, value } = e.target;
@@ -26,7 +27,7 @@ function FilterForm({setFilterData}) {
         console.log(formData);
     }
 
-    const [categories, setCategories] = useState([]);
+
     function updateCategories() {
         fetch(process.env.REACT_APP_API_URL + "/categories")
             .then((response) => response.json())
@@ -43,13 +44,14 @@ function FilterForm({setFilterData}) {
 
     }
     useEffect(updateCategories, []);
+    useEffect(() => {setFilterData(formData);}, []);
 
 
     const [subcategories, setSubcategories] = useState([]);
     function updateSubcategories() {
 
         if (formData.category !== '') {
-            fetch(process.env.REACT_APP_API_URL + "/subcategories/category?categoryId=" + formData.category)
+            fetch(process.env.REACT_APP_API_URL + "/categories/" + formData.category + "/subcategories")
                 .then((response) => response.json())
                 .then(subcategories => {
                     setSubcategories([{id: '', name: "Wszystkie"}, ...subcategories]);

@@ -16,8 +16,10 @@ function Auction() {
 
         fetch(process.env.REACT_APP_API_URL + `/products/${auctionId}`)
             .then(response => response.json())
-            .then(data => setAuction(data));
+            .then(data => setAuction(data))
+            .catch(() => {});
     }
+
 
     useEffect(fetchAuction, [auctionId]);
 
@@ -31,26 +33,25 @@ function Auction() {
     }
 
     function addToCart() {
-        fetch(process.env.REACT_APP_API_URL + "/cart/add", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({id: auction.id})
-        })
+        fetch(process.env.REACT_APP_API_URL + "/cart/add/" + auction.id)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Could not add item to cart');
                 }
+                else {
+                    alert('Dodano do koszyka');
+                }
+
             })
             .catch((error) => {
                 console.error('Błąd podczas dodawania do koszyka:', error);
             });
+
     }
 
 
     if (!auction) {
-        return <div>Loading...</div>;
+        return <div>Aukcja niedostępna</div>;
     }
 
     if (auction.imageUrls === null) {
