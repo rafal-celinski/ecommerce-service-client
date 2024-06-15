@@ -21,7 +21,8 @@ function AuctionList({filterData}) {
 
             fetch(
                 process.env.REACT_APP_API_URL + "/products/search?" +
-                "category=" + filterData.category +
+                "search="+filterData.search +
+                "&category=" + filterData.category +
                 "&subcategory=" + filterData.subcategory +
                 "&minPrice=" + filterData.minPrice +
                 "&maxPrice=" + filterData.maxPrice +
