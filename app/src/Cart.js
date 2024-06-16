@@ -90,7 +90,7 @@ function Cart() {
                         <div className="Product" key={item.id}>
                             <div className="ProductImage">
 
-                                {item.imageUrls !== null && <img src={process.env.REACT_APP_API_URL + item.imageUrls[0]} alt="" />}
+                                {item.imageUrls !== null && <img src={item.imageUrls[0]} alt="" />}
                             </div>
                             <div className="ProductInfo">
                                 <Link className="ProductTitle" to={`/auction/${item.id}`}>

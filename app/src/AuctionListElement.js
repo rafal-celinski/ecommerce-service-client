@@ -18,7 +18,7 @@ function AuctionListElement({ auction }) {
     return (
         <div className="Element" key={auction.id}>
             <div className="Image">
-                <img src={process.env.REACT_APP_API_URL + auction.imageUrls[0]} alt=""/>
+                <img src={auction.imageUrls[0]} alt=""/>
             </div>
             <div className="Info">
                 <Link className="Title" to={`/auction/${auction.id}`}>

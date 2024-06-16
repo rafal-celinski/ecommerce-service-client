@@ -65,7 +65,7 @@ function Auction() {
             <div className="Auction">
                 <div className="AuctionTitle">{auction.title}</div>
                 <div className="AuctionImage">
-                    <img src={process.env.REACT_APP_API_URL + auction.imageUrls[currentImage]} alt="" />
+                    <img src={auction.imageUrls[currentImage]} alt="" />
                 </div>
                 <div className="ImageButtons">
                     <button className="prevImage" onClick={prevImage}> Poprzednie zdjęcie </button>
